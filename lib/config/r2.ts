@@ -34,7 +34,7 @@ export const R2_CONFIG = {
  */
 export function getImageUrl(filename: string): string {
   if (R2_CONFIG.useR2 && R2_CONFIG.publicDomain) {
-    return `${R2_CONFIG.publicDomain}/${filename}`;
+    return `${R2_CONFIG.publicDomain}/assets/panoramas/${filename}`;
   }
   // Fallback to local files
   return `/assets/panoramas/${filename}`;
@@ -48,8 +48,8 @@ export const CORS_CONFIG = {
   AllowedOrigins: [
     "http://localhost:3000",
     "http://localhost:3002",
-    // Add production Vercel domain here after deployment
-    // "https://your-app.vercel.app",
+    "https://panorama-viewer-marina-beta.vercel.app",
+    "https://*.vercel.app",
   ],
   AllowedMethods: ["GET", "HEAD"],
   AllowedHeaders: ["*"],

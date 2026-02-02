@@ -44,9 +44,8 @@ export type FloorConfig = {
  */
 function getImageUrl(localPath: string): string {
   if (environment.useR2 && environment.r2Domain) {
-    // Convert "/assets/panoramas/file.jpg" to "https://r2-domain.com/file.jpg"
-    const fileName = localPath.split('/').pop();
-    return `${environment.r2Domain}/${fileName}`;
+    // Convert "/assets/panoramas/file.jpg" to "https://r2-domain.com/assets/panoramas/file.jpg"
+    return `${environment.r2Domain}${localPath}`;
   }
   return localPath;
 }

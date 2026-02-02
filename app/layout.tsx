@@ -13,8 +13,16 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Ashwini Sheth Panorama Viewer",
-  description: "360° panoramic views of Ashwini Sheth property",
+  title: "Marina One | 360° Panoramic Views | Ashwin Sheth Group",
+  description: "Experience breathtaking 360° panoramic views from Marina One luxury residences. Explore floors 44F to 75F with dynamic time-of-day views of Mumbai's skyline.",
+  keywords: ["Marina One", "Ashwin Sheth Group", "YM Infra", "Mumbai luxury apartments", "360 panorama", "Mumbai skyline"],
+  authors: [{ name: "Ashwin Sheth Group" }],
+  openGraph: {
+    title: "Marina One | 360° Panoramic Views",
+    description: "Experience breathtaking 360° panoramic views from Marina One luxury residences in Mumbai.",
+    type: "website",
+    siteName: "Marina One Panorama Viewer",
+  },
 };
 
 export default function RootLayout({
