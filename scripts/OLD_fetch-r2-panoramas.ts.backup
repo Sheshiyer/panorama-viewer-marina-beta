@@ -1,0 +1,225 @@
+#!/usr/bin/env ts-node
+/**
+ * Fetch panorama images from Cloudflare R2 (marina-one-panaroma-images),
+ * map to floor/time/direction, and save under public/assets/panoramas/
+ * for tile generation and panoramaConfig.
+ *
+ * Prerequisites:
+ *   - .env with R2_ACCOUNT_ID, R2_ACCESS_KEY_ID, R2_SECRET_ACCESS_KEY, R2_BUCKET_NAME
+ *   - npm install (includes @aws-sdk/client-s3, dotenv)
+ *
+ * Usage:
+ *   npm run fetch-r2              # download images to public/assets/panoramas/
+ *   npm run fetch-r2 -- --urls-only   # no download; write lib/r2-manifest.generated.json
+ *                                    # (requires R2_PUBLIC_BASE_URL or NEXT_PUBLIC_R2_BASE_URL)
+ */
+
+import * as fs from "fs";
+import * as path from "path";
+import {
+  S3Client,
+  ListObjectsV2Command,
+  GetObjectCommand,
+} from "@aws-sdk/client-s3";
+import {
+  parseR2Key,
+  R2_TIMES,
+  type ParsedR2Key,
+} from "../lib/config/r2Mapping";
+import type { TimeKey, ViewDirection } from "../lib/panoramaConfig";
+
+// Load .env from project root
+function loadEnv() {
+  const root = path.resolve(__dirname, "..");
+  for (const f of [".env.local", ".env"]) {
+    const p = path.join(root, f);
+    if (!fs.existsSync(p)) continue;
+    const buf = fs.readFileSync(p, "utf8");
+    for (const line of buf.split("\n")) {
+      const m = /^\s*([A-Za-z_][A-Za-z0-9_]*)\s*=\s*(.*)$/.exec(line);
+      if (!m) continue;
+      const key = m[1];
+      let val = m[2].trim();
+      if ((val.startsWith('"') && val.endsWith('"')) || (val.startsWith("'") && val.endsWith("'")))
+        val = val.slice(1, -1).replace(/\\(.)/g, "$1");
+      if (process.env[key] == null) process.env[key] = val;
+    }
+  }
+}
+
+loadEnv();
+
+const R2_ACCOUNT_ID = process.env.R2_ACCOUNT_ID;
+const R2_ACCESS_KEY_ID = process.env.R2_ACCESS_KEY_ID;
+const R2_SECRET_ACCESS_KEY = process.env.R2_SECRET_ACCESS_KEY;
+const R2_BUCKET_NAME = process.env.R2_BUCKET_NAME || "marina-one-panaroma-images";
+const R2_PUBLIC_BASE =
+  process.env.R2_PUBLIC_BASE_URL || process.env.NEXT_PUBLIC_R2_BASE_URL || "";
+
+const URLS_ONLY = process.argv.includes("--urls-only");
+
+function requireEnv(name: string): string {
+  const v = process.env[name];
+  if (!v) {
+    console.error(`Missing ${name}. Set it in .env or .env.local.`);
+    process.exit(1);
+  }
+  return v;
+}
+
+function getExt(filename: string): string {
+  const m = /\.(jpe?g|png)$/i.exec(filename);
+  return m ? (m[1].toLowerCase() === "jpeg" ? "jpg" : m[1].toLowerCase()) : "jpg";
+}
+
+async function listAllKeys(
+  client: S3Client,
+  bucket: string,
+  prefix: string
+): Promise<string[]> {
+  const keys: string[] = [];
+  let token: string | undefined;
+  do {
+    const cmd = new ListObjectsV2Command({
+      Bucket: bucket,
+      Prefix: prefix,
+      ContinuationToken: token,
+    });
+    const out = await client.send(cmd);
+    for (const o of out.Contents ?? []) {
+      if (o.Key) keys.push(o.Key);
+    }
+    token = out.NextContinuationToken ?? undefined;
+  } while (token);
+  return keys;
+}
+
+function buildManifest(
+  byView: Map<string, { key: string; parsed: ParsedR2Key }>,
+  baseUrl: string
+): Record<string, string> {
+  const manifest: Record<string, string> = {};
+  const base = baseUrl.replace(/\/$/, "");
+  for (const [_, { key: r2Key, parsed }] of byView.entries()) {
+    const manifestKey = `${parsed.floorNumber}f/${parsed.time}/${parsed.direction}`;
+    const segments = r2Key.split("/").map((s) => encodeURIComponent(s));
+    manifest[manifestKey] = base + "/" + segments.join("/");
+  }
+  return manifest;
+}
+
+async function main() {
+  requireEnv("R2_ACCOUNT_ID");
+  requireEnv("R2_ACCESS_KEY_ID");
+  requireEnv("R2_SECRET_ACCESS_KEY");
+
+  const accountId = R2_ACCOUNT_ID!;
+  const bucket = R2_BUCKET_NAME!;
+
+  if (URLS_ONLY) {
+    const base = R2_PUBLIC_BASE.trim();
+    if (!base) {
+      console.error("--urls-only requires R2_PUBLIC_BASE_URL or NEXT_PUBLIC_R2_BASE_URL in .env");
+      process.exit(1);
+    }
+  }
+
+  const client = new S3Client({
+    region: "auto",
+    endpoint: `https://${accountId}.r2.cloudflarestorage.com`,
+    credentials: {
+      accessKeyId: R2_ACCESS_KEY_ID!,
+      secretAccessKey: R2_SECRET_ACCESS_KEY!,
+    },
+    forcePathStyle: true,
+  });
+
+  console.log(URLS_ONLY ? "Building R2 URL manifest (no download)" : "Fetching panorama images from R2");
+  console.log("Bucket:", bucket);
+  if (URLS_ONLY) console.log("Base URL:", R2_PUBLIC_BASE.trim());
+  console.log("");
+
+  let allKeys: string[] = [];
+  // List all keys in the bucket to support both old (Time/...) and new (44f/...) structures
+  console.log("Listing all objects in bucket...");
+  allKeys = await listAllKeys(client, bucket, "");
+
+  const byView = new Map<string, { key: string; parsed: ParsedR2Key }>();
+  for (const key of allKeys) {
+    const parsed = parseR2Key(key);
+    if (!parsed) continue;
+    const viewKey = `${parsed.floorNumber}-${parsed.time}-${parsed.direction}`;
+    const existing = byView.get(viewKey);
+    if (!existing || key < existing.key) {
+      byView.set(viewKey, { key, parsed });
+    }
+  }
+
+  if (URLS_ONLY) {
+    const manifest = buildManifest(byView, R2_PUBLIC_BASE.trim());
+    const outPath = path.join(path.resolve(__dirname, ".."), "lib", "r2-manifest.generated.json");
+    fs.mkdirSync(path.dirname(outPath), { recursive: true });
+    fs.writeFileSync(outPath, JSON.stringify(manifest, null, 2), "utf8");
+    console.log("Wrote", Object.keys(manifest).length, "URLs to", outPath);
+    console.log("");
+    console.log("App will use these R2 image URLs directly (no local copies). Run `npm run dev`.");
+    return;
+  }
+
+  const base = path.resolve(__dirname, "..");
+  const outRoot = path.join(base, "public", "assets", "panoramas");
+  fs.mkdirSync(outRoot, { recursive: true });
+  let ok = 0;
+  let skip = 0;
+  let err = 0;
+
+  for (const [viewKey, { key: r2Key, parsed }] of Array.from(byView.entries()).sort()) {
+    const ext = getExt(parsed.filename);
+    const outPath = path.join(
+      outRoot,
+      `${parsed.floorNumber}f`,
+      parsed.time,
+      `${parsed.direction}.${ext}`
+    );
+
+    if (fs.existsSync(outPath)) {
+      console.log("⏭️  Skip (exists):", `${parsed.floorNumber}f/${parsed.time}/${parsed.direction}.${ext}`);
+      skip++;
+      continue;
+    }
+
+    try {
+      const cmd = new GetObjectCommand({ Bucket: bucket, Key: r2Key });
+      const obj = await client.send(cmd);
+      const body = obj.Body;
+      if (!body) throw new Error("No body");
+
+      const dir = path.dirname(outPath);
+      fs.mkdirSync(dir, { recursive: true });
+      const chunks: Uint8Array[] = [];
+      for await (const c of body as AsyncIterable<Uint8Array>) {
+        chunks.push(c);
+      }
+      const buf = Buffer.concat(chunks);
+      fs.writeFileSync(outPath, buf);
+
+      const size = (buf.length / 1024 / 1024).toFixed(2);
+      console.log("✅", `${parsed.floorNumber}f/${parsed.time}/${parsed.direction}.${ext}`, `(${size} MB)`);
+      ok++;
+    } catch (e) {
+      console.error("❌", viewKey, r2Key, e);
+      err++;
+    }
+  }
+
+  console.log("");
+  console.log("Summary: downloaded", ok, "| skipped", skip, "| errors", err);
+  console.log("Output:", path.join(outRoot, ""));
+  console.log("");
+  console.log("Next: run ./scripts/generate-tiles.sh, then update panoramaConfig with R2/tile URLs.");
+}
+
+main().catch((e) => {
+  console.error(e);
+  process.exit(1);
+});

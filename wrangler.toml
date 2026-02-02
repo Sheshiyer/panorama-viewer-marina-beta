@@ -1,0 +1,9 @@
+# Wrangler configuration for Marina One Panoramas
+# New bucket: marina-one-panoramas-v2
+
+name = "marina-one-panoramas"
+compatibility_date = "2026-02-01"
+
+[[r2_buckets]]
+bucket_name = "marina-one-panoramas-v2"
+binding = "PANORAMAS"
