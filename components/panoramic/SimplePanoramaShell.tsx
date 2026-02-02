@@ -113,11 +113,11 @@ export function SimplePanoramaShell() {
         <WeatherWidget />
       </div>
 
-      {/* Control Overlay Interface - Mobile optimized */}
-      <div className="fixed bottom-4 md:bottom-8 left-1/2 transform -translate-x-1/2 z-40 flex flex-col items-center gap-2 md:gap-4 w-full px-2 md:px-4 max-w-2xl">
+      {/* Control Overlay Interface - Vertical stack on mobile */}
+      <div className="fixed bottom-2 md:bottom-8 left-1/2 transform -translate-x-1/2 z-40 flex flex-col items-center gap-2 md:gap-4 w-full px-2 md:px-4 max-w-2xl">
         
-        {/* Time and Direction Controls Row */}
-        <div className="flex flex-wrap justify-center gap-2 md:gap-4 items-center">
+        {/* Time and Direction Controls - Stacked on mobile */}
+        <div className="flex flex-col md:flex-row flex-wrap justify-center gap-2 md:gap-4 items-center w-full">
           
           {/* Time Switcher */}
           <div className="flex bg-slate-950/40 backdrop-blur-xl rounded-full p-1 md:p-1.5 border border-white/10 shadow-2xl">
@@ -158,7 +158,7 @@ export function SimplePanoramaShell() {
               <button
                 key={index}
                 onClick={() => setActiveViewIndex(index)}
-                className={`px-3 py-1 md:px-4 md:py-1.5 rounded-full text-[10px] md:text-xs font-bold transition-all whitespace-nowrap ${
+                className={`px-2.5 py-1 md:px-4 md:py-1.5 rounded-full text-[9px] md:text-xs font-bold transition-all whitespace-nowrap ${
                   activeViewIndex === index 
                     ? `bg-gradient-to-r ${timeColors[activeTimeId]} text-white shadow-lg` 
                     : 'text-slate-400 hover:text-white hover:bg-white/5'
@@ -170,51 +170,48 @@ export function SimplePanoramaShell() {
           </div>
         </div>
 
-        {/* Floor Selection Bar - Mobile optimized */}
-        <div className="bg-slate-900/90 backdrop-blur-2xl rounded-2xl md:rounded-3xl px-4 py-3 md:px-8 md:py-5 shadow-[0_20px_50px_rgba(0,0,0,0.5)] border border-white/10 flex items-center gap-3 md:gap-6 w-full sm:w-auto">
-          <div className="flex items-center gap-3 md:gap-6 shrink-0">
-            <div className="flex flex-col">
-              <span className="text-slate-500 text-[8px] md:text-[10px] font-bold uppercase tracking-[0.2em]">Select Floor</span>
-              <div className="relative mt-0.5 md:mt-1">
-                <button
-                  onClick={() => setDropdownOpen(!dropdownOpen)}
-                  className={`px-4 py-2 md:px-6 md:py-3 bg-gradient-to-br ${timeColors[activeTimeId]} text-white font-bold rounded-xl md:rounded-2xl hover:scale-105 active:scale-95 transition-all shadow-xl flex items-center gap-2 md:gap-3 min-w-[140px] md:min-w-[180px] justify-between`}
-                >
-                  <span className="text-sm md:text-lg">{activeFloor.label}</span>
-                  <svg className={`w-4 h-4 md:w-5 md:h-5 transition-transform duration-300 ${dropdownOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
-                  </svg>
-                </button>
-                
-                {dropdownOpen && (
-                  <div className="absolute bottom-full mb-2 md:mb-4 left-0 bg-slate-900/95 backdrop-blur-3xl rounded-xl md:rounded-2xl shadow-[0_30px_60px_rgba(0,0,0,0.8)] border border-white/10 overflow-hidden min-w-[180px] md:min-w-[220px] animate-in fade-in slide-in-from-bottom-4 duration-300">
-                    <div className="max-h-[60vh] overflow-y-auto py-1 md:py-2 custom-scrollbar">
-                      {floors.map((floor) => (
-                        <button
-                          key={floor.id}
-                          onClick={() => handleFloorChange(floor.id)}
-                          className={`w-full px-4 py-3 md:px-6 md:py-4 text-left hover:bg-white/5 transition-all flex items-center justify-between group ${
-                            floor.id === activeFloorId ? 'bg-amber-500/10 text-amber-400 font-bold' : 'text-slate-300'
-                          }`}
-                        >
-                          <span className="text-sm md:text-base">{floor.label}</span>
-                          {floor.id === activeFloorId && <div className="w-2 h-2 rounded-full bg-amber-500 shadow-[0_0_10px_rgba(245,158,11,0.8)]"></div>}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </div>
-            </div>
+        {/* Floor Selection Bar - Compact on mobile */}
+        <div className="bg-slate-900/90 backdrop-blur-2xl rounded-xl md:rounded-3xl px-3 py-2 md:px-8 md:py-5 shadow-[0_20px_50px_rgba(0,0,0,0.5)] border border-white/10 flex items-center gap-2 md:gap-6 justify-center">
+          {/* Floor Selector */}
+          <div className="relative">
+            <button
+              onClick={() => setDropdownOpen(!dropdownOpen)}
+              className={`px-3 py-1.5 md:px-6 md:py-3 bg-gradient-to-br ${timeColors[activeTimeId]} text-white font-bold rounded-lg md:rounded-2xl hover:scale-105 active:scale-95 transition-all shadow-xl flex items-center gap-1.5 md:gap-3 text-xs md:text-lg`}
+            >
+              <span>{activeFloor.label}</span>
+              <svg className={`w-3 h-3 md:w-5 md:h-5 transition-transform duration-300 ${dropdownOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
             
-            <div className="h-8 md:h-12 w-[1px] bg-white/10 mx-1 md:mx-2"></div>
+            {dropdownOpen && (
+              <div className="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 md:left-0 md:translate-x-0 md:mb-4 bg-slate-900/95 backdrop-blur-3xl rounded-xl md:rounded-2xl shadow-[0_30px_60px_rgba(0,0,0,0.8)] border border-white/10 overflow-hidden min-w-[160px] md:min-w-[220px] animate-in fade-in slide-in-from-bottom-4 duration-300">
+                <div className="max-h-[60vh] overflow-y-auto py-1 md:py-2 custom-scrollbar">
+                  {floors.map((floor) => (
+                    <button
+                      key={floor.id}
+                      onClick={() => handleFloorChange(floor.id)}
+                      className={`w-full px-3 py-2 md:px-6 md:py-4 text-left hover:bg-white/5 transition-all flex items-center justify-between group ${
+                        floor.id === activeFloorId ? 'bg-amber-500/10 text-amber-400 font-bold' : 'text-slate-300'
+                      }`}
+                    >
+                      <span className="text-xs md:text-base">{floor.label}</span>
+                      {floor.id === activeFloorId && <div className="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-amber-500 shadow-[0_0_10px_rgba(245,158,11,0.8)]"></div>}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+          
+          <div className="h-6 md:h-12 w-[1px] bg-white/10"></div>
 
-            <div className="flex flex-col">
-              <span className="text-slate-500 text-[8px] md:text-[10px] font-bold uppercase tracking-[0.2em]">Elevation</span>
-              <span className="text-xl md:text-2xl font-black text-white mt-0.5 md:mt-1 tabular-nums">
-                {activeFloor.elevation}<span className="text-slate-500 text-xs md:text-sm font-normal ml-0.5 md:ml-1">m</span>
-              </span>
-            </div>
+          {/* Elevation Display - Compact on mobile */}
+          <div className="flex flex-col items-center md:items-start">
+            <span className="text-slate-500 text-[7px] md:text-[10px] font-bold uppercase tracking-[0.15em] md:tracking-[0.2em]">Elevation</span>
+            <span className="text-lg md:text-2xl font-black text-white tabular-nums">
+              {activeFloor.elevation}<span className="text-slate-500 text-[10px] md:text-sm font-normal ml-0.5">m</span>
+            </span>
           </div>
         </div>
       </div>
