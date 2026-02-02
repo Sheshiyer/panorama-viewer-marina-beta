@@ -65,6 +65,13 @@ export function SimplePanoramaViewer({ floor, timeId, viewIndex, onReady }: Prop
         console.log('🎬 Loading panorama for', floor.label, '-', timeConfig.label, '-', view.label);
         console.log('📁 Image:', imageUrl);
 
+        // Detect mobile device for better panorama FOV
+        const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+        
+        // Mobile-optimized FOV to prevent black bars
+        const mobileHfov = 120; // Wider FOV for mobile portrait
+        const desktopHfov = view.hfov ?? 90;
+
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const viewerConfig: any = {
           type: "equirectangular",
@@ -72,7 +79,7 @@ export function SimplePanoramaViewer({ floor, timeId, viewIndex, onReady }: Prop
           autoLoad: true,
           autoRotate: view.isPanoramic ? -2 : 0,
           showControls: false,
-          hfov: view.hfov ?? 90,
+          hfov: isMobile ? mobileHfov : desktopHfov,
           yaw: view.defaultYaw ?? 0,
           pitch: view.defaultPitch ?? 0,
           dynamic: false,
@@ -88,8 +95,8 @@ export function SimplePanoramaViewer({ floor, timeId, viewIndex, onReady }: Prop
         };
 
         if (!view.isPanoramic) {
-          const haov = 100;
-          const vaov = 100 / (floor.floorNumber === 56 ? 1.33 : 1.77);
+          const haov = isMobile ? 120 : 100;
+          const vaov = haov / (floor.floorNumber === 56 ? 1.33 : 1.77);
           
           viewerConfig.haov = haov;
           viewerConfig.vaov = vaov;
