@@ -108,8 +108,8 @@ export function SimplePanoramaShell() {
         />
       </div>
 
-      {/* Weather Widget moved to Bottom Left with proper padding */}
-      <div className="fixed bottom-12 left-12 z-40 pointer-events-auto">
+      {/* Weather Widget - Bottom Left (hidden on mobile) */}
+      <div className="hidden md:block fixed bottom-12 left-12 z-40 pointer-events-auto">
         <WeatherWidget />
       </div>
 

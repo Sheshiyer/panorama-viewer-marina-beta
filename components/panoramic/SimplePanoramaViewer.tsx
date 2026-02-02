@@ -298,9 +298,9 @@ export function SimplePanoramaViewer({ floor, timeId, viewIndex, onReady }: Prop
         </div>
       )}
 
-      {/* Compass - Bottom Left */}
+      {/* Compass - Bottom Left (hidden on mobile) */}
       {!loading && !error && (
-        <div className="absolute bottom-12 left-12 z-40 mb-32">
+        <div className="hidden md:block absolute bottom-12 left-12 z-40 mb-32">
           <div className="relative w-24 h-24 bg-slate-900/60 backdrop-blur-xl border border-white/10 rounded-full flex items-center justify-center shadow-2xl overflow-hidden group hover:bg-slate-800/80 transition-all">
             {/* Cardinal directions */}
             <div className="absolute inset-3 border border-white/5 rounded-full" />
