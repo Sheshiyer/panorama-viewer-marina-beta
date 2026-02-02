@@ -230,22 +230,22 @@ export function SimplePanoramaViewer({ floor, timeId, viewIndex, onReady }: Prop
         </div>
       )}
 
-      {/* Control Panel - Bottom Right */}
+      {/* Control Panel - Bottom Right (mobile-optimized) */}
       {!loading && !error && (
-        <div className="absolute bottom-6 right-6 z-50 flex flex-col gap-3">
+        <div className="absolute bottom-4 right-3 md:bottom-6 md:right-6 z-50 flex flex-col gap-2 md:gap-3">
           {/* Play/Pause Button - Only show for true panoramics */}
           {view?.isPanoramic && (
             <button
               onClick={togglePlayPause}
-              className="w-14 h-14 rounded-full bg-slate-900/80 backdrop-blur-xl border border-white/10 flex items-center justify-center hover:bg-slate-800/90 transition-all shadow-2xl group"
+              className="w-11 h-11 md:w-14 md:h-14 rounded-full bg-slate-900/80 backdrop-blur-xl border border-white/10 flex items-center justify-center hover:bg-slate-800/90 transition-all shadow-2xl group"
               aria-label={isPlaying ? "Pause rotation" : "Play rotation"}
             >
               {isPlaying ? (
-                <svg className="w-6 h-6 text-white group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24">
+                <svg className="w-5 h-5 md:w-6 md:h-6 text-white group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z"/>
                 </svg>
               ) : (
-                <svg className="w-6 h-6 text-white group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24">
+                <svg className="w-5 h-5 md:w-6 md:h-6 text-white group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M8 5v14l11-7z"/>
                 </svg>
               )}
@@ -253,44 +253,44 @@ export function SimplePanoramaViewer({ floor, timeId, viewIndex, onReady }: Prop
           )}
 
           {/* Zoom Controls */}
-          <div className="flex flex-col gap-2 bg-slate-900/80 backdrop-blur-xl border border-white/10 rounded-2xl p-2 shadow-2xl">
+          <div className="flex flex-col gap-1.5 md:gap-2 bg-slate-900/80 backdrop-blur-xl border border-white/10 rounded-xl md:rounded-2xl p-1.5 md:p-2 shadow-2xl">
             <button
               onClick={zoomIn}
-              className="w-10 h-10 rounded-lg bg-slate-800/50 hover:bg-slate-700/70 transition-all flex items-center justify-center group"
+              className="w-9 h-9 md:w-10 md:h-10 rounded-lg bg-slate-800/50 hover:bg-slate-700/70 transition-all flex items-center justify-center group"
               aria-label="Zoom in"
             >
-              <svg className="w-5 h-5 text-white group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-4 h-4 md:w-5 md:h-5 text-white group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
               </svg>
             </button>
             <button
               onClick={zoomOut}
-              className="w-10 h-10 rounded-lg bg-slate-800/50 hover:bg-slate-700/70 transition-all flex items-center justify-center group"
+              className="w-9 h-9 md:w-10 md:h-10 rounded-lg bg-slate-800/50 hover:bg-slate-700/70 transition-all flex items-center justify-center group"
               aria-label="Zoom out"
             >
-              <svg className="w-5 h-5 text-white group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-4 h-4 md:w-5 md:h-5 text-white group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 12H4" />
               </svg>
             </button>
           </div>
 
           {/* Additional Controls */}
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-1.5 md:gap-2">
             <button
               onClick={resetView}
-              className="w-12 h-12 rounded-full bg-slate-900/80 backdrop-blur-xl border border-white/10 flex items-center justify-center hover:bg-slate-800/90 transition-all shadow-2xl group"
+              className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-slate-900/80 backdrop-blur-xl border border-white/10 flex items-center justify-center hover:bg-slate-800/90 transition-all shadow-2xl group"
               title="Reset View"
             >
-              <svg className="w-5 h-5 text-white group-hover:rotate-180 transition-transform duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-4 h-4 md:w-5 md:h-5 text-white group-hover:rotate-180 transition-transform duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
               </svg>
             </button>
             <button
               onClick={toggleFullscreen}
-              className="w-12 h-12 rounded-full bg-slate-900/80 backdrop-blur-xl border border-white/10 flex items-center justify-center hover:bg-slate-800/90 transition-all shadow-2xl group"
+              className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-slate-900/80 backdrop-blur-xl border border-white/10 flex items-center justify-center hover:bg-slate-800/90 transition-all shadow-2xl group"
               title="Toggle Fullscreen"
             >
-              <svg className="w-5 h-5 text-white group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-4 h-4 md:w-5 md:h-5 text-white group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
               </svg>
             </button>
