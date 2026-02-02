@@ -1,6 +1,8 @@
-# One Marina - Advanced 360° Environment Simulator
+# Marina One - Advanced 360° Environment Simulator
 
-An elite-tier, interactive 360° panorama viewer and environmental simulator for One Marina's premium floors (44F to 75F). This is not just a gallery; it is a high-performance visual experience that mirrors real-world conditions.
+An elite-tier, interactive 360° panorama viewer and environmental simulator for Marina One's premium floors (44F to 75F). This is not just a gallery; it is a high-performance visual experience that mirrors real-world conditions.
+
+**By Ashwin Sheth Group & YM Infra**
 
 ---
 
@@ -19,7 +21,7 @@ This project goes beyond standard web development to provide a truly immersive p
 
 ## 🏢 Project Overview
 
-**One Marina** is a luxury residential tower offering spectacular views of Mumbai. This panorama viewer provides an interactive way to explore:
+**Marina One** is a luxury residential tower by Ashwin Sheth Group offering spectacular views of Mumbai. This panorama viewer provides an interactive way to explore:
 
 - **9 Floors:** 44F to 75F
 - **81+ Dynamic Views:** Integrated time-of-day and directional switching
@@ -247,14 +249,14 @@ See [MANUAL_TASKS.md](MANUAL_TASKS.md) for post-deployment tasks (CORS update).
 
 ## 📄 License
 
-© 2026 One Marina by Ashwin Sheth Group & YM Infra. All rights reserved.
+© 2026 Marina One by Ashwin Sheth Group & YM Infra. All rights reserved.
 
 ---
 
 ## 🤝 Credits
 
 **Developed for:**
-- One Marina - Luxury Residential Tower
+- Marina One - Luxury Residential Tower
 - Ashwin Sheth Group
 - YM Infra
 
