@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { loadPannellum } from "@/lib/pannellumLoader";
 import type { FloorConfig } from "@/lib/panoramaConfig.simple";
+import { resolveImageUrl } from "@/lib/panoramaConfig.simple";
 
 type PannellumViewer = {
   destroy?: () => void;
@@ -58,13 +59,15 @@ export function SimplePanoramaViewer({ floor, timeId, viewIndex, onReady }: Prop
           containerRef.current.innerHTML = '';
         }
 
+        // Resolve image URL at runtime (supports R2 or local files)
+        const imageUrl = resolveImageUrl(view.image);
         console.log('🎬 Loading panorama for', floor.label, '-', timeConfig.label, '-', view.label);
-        console.log('📁 Image:', view.image);
+        console.log('📁 Image:', imageUrl);
 
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const viewerConfig: any = {
           type: "equirectangular",
-          panorama: view.image,
+          panorama: imageUrl,
           autoLoad: true,
           autoRotate: view.isPanoramic ? -2 : 0,
           showControls: false,

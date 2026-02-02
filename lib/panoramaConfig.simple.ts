@@ -41,11 +41,28 @@ export type FloorConfig = {
 /**
  * Helper to get the correct image URL based on environment settings.
  * If NEXT_PUBLIC_USE_R2 is true, it replaces the local path with the R2 domain.
+ * 
+ * NOTE: This is called at module load time, so we store the local path.
+ * Use resolveImageUrl() at runtime to get the actual URL.
  */
 function getImageUrl(localPath: string): string {
-  if (environment.useR2 && environment.r2Domain) {
-    // Convert "/assets/panoramas/file.jpg" to "https://r2-domain.com/assets/panoramas/file.jpg"
-    return `${environment.r2Domain}${localPath}`;
+  // Always return local path - resolution happens at runtime
+  return localPath;
+}
+
+/**
+ * Runtime function to resolve image URL based on current environment.
+ * Call this in components/hooks, NOT at module initialization.
+ */
+export function resolveImageUrl(localPath: string): string {
+  // Check environment at runtime
+  const useR2 = typeof window !== 'undefined' 
+    ? process.env.NEXT_PUBLIC_USE_R2 === 'true'
+    : process.env.NEXT_PUBLIC_USE_R2 === 'true';
+  const r2Domain = process.env.NEXT_PUBLIC_R2_DOMAIN;
+  
+  if (useR2 && r2Domain) {
+    return `${r2Domain}${localPath}`;
   }
   return localPath;
 }
