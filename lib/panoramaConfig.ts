@@ -1,5 +1,5 @@
 // Auto-generated panoramaConfig.ts
-// Generated on: 2026-02-03T17:22:15.727Z
+// Generated on: 2026-02-03T20:02:41.673Z
 // Source: lib/r2-manifest.panoramic.json
 // Total floors: 9
 // Total views: 108
@@ -233,7 +233,7 @@ export const floors: FloorConfig[] = [
     id: 4,
     label: "56th Floor",
     floorNumber: 56,
-    elevation: 196,
+    elevation: 210,
     views: {
       sunrise: {
         stadium: {
@@ -297,7 +297,7 @@ export const floors: FloorConfig[] = [
     id: 5,
     label: "60th Floor",
     floorNumber: 60,
-    elevation: 210,
+    elevation: 224,
     views: {
       sunrise: {
         stadium: {
@@ -361,7 +361,7 @@ export const floors: FloorConfig[] = [
     id: 6,
     label: "64th Floor",
     floorNumber: 64,
-    elevation: 224,
+    elevation: 238,
     views: {
       sunrise: {
         stadium: {
@@ -425,7 +425,7 @@ export const floors: FloorConfig[] = [
     id: 7,
     label: "68th Floor",
     floorNumber: 68,
-    elevation: 238,
+    elevation: 196,
     views: {
       sunrise: {
         stadium: {
