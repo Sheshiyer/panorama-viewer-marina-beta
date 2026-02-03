@@ -106,7 +106,7 @@ export function SimplePanoramaShell() {
 
       {/* RERA Registration - Top Right */}
       <div className="fixed top-0 right-0 z-30 pointer-events-none px-6 md:px-12 pt-6 md:pt-10">
-        <div className="bg-slate-900/80 backdrop-blur-xl rounded-xl md:rounded-2xl px-4 py-3 md:px-6 md:py-4 border border-white/10 shadow-2xl flex flex-col items-end text-white text-right">
+        <div className="flex flex-col items-end text-white text-right drop-shadow-lg">
           <p className="text-[9px] md:text-[11px] font-medium tracking-tight opacity-90 mb-0">
             MahaRERA Registration No.:
           </p>

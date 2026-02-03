@@ -235,7 +235,7 @@ export function PanoramaShell() {
       {/* RERA Registration - Top Right */}
       <div className="fixed top-0 right-0 z-30 pointer-events-none px-4 pt-4 md:px-12 md:pt-10 flex flex-col items-end gap-4">
 
-        <div className="bg-black/10 backdrop-blur-md rounded-lg md:rounded-2xl px-2 py-1.5 md:px-6 md:py-4 border border-white/5 md:border-white/10 shadow-2xl flex flex-col items-end text-white text-right">
+        <div className="flex flex-col items-end text-white text-right drop-shadow-lg">
           <p className="text-[7px] md:text-[11px] font-medium tracking-tight opacity-70 md:opacity-90 mb-0">
             MahaRERA Registration No.:
           </p>
