@@ -185,40 +185,34 @@ export function PanoramaShell() {
         onReady={handleReady}
         onFallback={(reason) => setFallbackMessage(reason)}
       />
-      {/* Logo overlays */}
-      <div
-        className="fixed left-8 pointer-events-none z-30"
-        style={{ top: "3.25rem" }}
-      >
-        <img
-          src="/YM-Infra.png"
-          alt="YM Infra"
-          className="object-contain drop-shadow-xl h-24 md:h-32 w-auto"
-        />
+      {/* Brand Logos - Top Left */}
+      <div className="fixed top-0 left-0 z-30 pointer-events-none px-8 md:px-12 pt-8 md:pt-12">
+        <div className="flex items-center gap-4 md:gap-8">
+          <img
+            src="/logo-ashwin-sheth-white.svg"
+            alt="Ashwin Sheth Group"
+            className="object-contain drop-shadow-2xl h-10 md:h-16 w-auto"
+          />
+          <span className="text-white/30 text-xl md:text-3xl font-light">&</span>
+          <img
+            src="/logo-ym-infra-white.svg"
+            alt="YM Infra"
+            className="object-contain drop-shadow-2xl h-10 md:h-16 w-auto"
+          />
+        </div>
       </div>
-      
+
+      {/* Center Logo - One Marina */}
       <div
-        className="fixed left-0 right-0 pointer-events-none z-30 flex justify-center"
-        style={{ top: "3.25rem" }}
+        className="fixed left-0 right-0 pointer-events-none z-30 flex justify-center top-6 md:top-8"
       >
         <img
           src="/ONE_MARINA_LOGO_PNG.png"
           alt="One Marina"
-          className="object-contain drop-shadow-xl h-32 md:h-40 w-auto"
+          className="object-contain drop-shadow-2xl h-24 md:h-40 w-auto"
         />
       </div>
-      
-      <div
-        className="fixed right-8 pointer-events-none z-30"
-        style={{ top: "3.25rem" }}
-      >
-        <img
-          src="/AshwinShethFinalLogo.svg"
-          alt="Ashwin Sheth Group"
-          className="object-contain drop-shadow-xl h-24 md:h-32 w-auto"
-        />
-      </div>
-      
+
       <UnifiedControls
         activeFloor={activeFloor}
         setActiveFloor={setActiveFloor}
@@ -229,6 +223,22 @@ export function PanoramaShell() {
         setActiveDirection={setActiveDirection}
         availableDirections={availableDirections}
       />
+
+      {/* RERA Registration - Top Right */}
+      <div className="fixed top-0 right-0 z-30 pointer-events-none px-8 md:px-12 pt-6 md:pt-10">
+        <div className="bg-slate-900/80 backdrop-blur-xl rounded-xl md:rounded-2xl px-4 py-3 md:px-6 md:py-4 border border-white/10 shadow-2xl flex flex-col items-end text-white text-right">
+          <p className="text-[9px] md:text-[11px] font-medium tracking-tight opacity-90 mb-0">
+            MahaRERA Registration No.:
+          </p>
+          <p className="text-xl md:text-3xl font-light tracking-tight leading-none mb-1">
+            P51900019619
+          </p>
+          <p className="text-[8px] md:text-[10px] font-medium opacity-80">
+            maharera.mahaonline.gov.in
+          </p>
+        </div>
+      </div>
+
       {fallbackMessage && (
         <FallbackToast
           message={fallbackMessage}

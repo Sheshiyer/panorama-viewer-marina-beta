@@ -37,7 +37,7 @@ export function SimplePanoramaShell() {
     // Try to find a view with the same label in the new time
     const currentViewLabel = activeTime.views[activeViewIndex]?.label;
     const sameLabelIndex = nextTime.views.findIndex((v: ViewConfig) => v.label === currentViewLabel);
-    
+
     setActiveTimeId(timeId);
     if (sameLabelIndex !== -1) {
       setActiveViewIndex(sameLabelIndex);
@@ -80,38 +80,41 @@ export function SimplePanoramaShell() {
 
   return (
     <div className="relative w-full h-screen bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 overflow-hidden">
-      <SimplePanoramaViewer 
-        floor={activeFloor} 
+      <SimplePanoramaViewer
+        floor={activeFloor}
         timeId={activeTimeId}
         viewIndex={activeViewIndex}
-        onReady={() => console.log('Viewer ready')} 
+        onReady={() => console.log('Viewer ready')}
       />
-      
+
       {/* Brand Logos - Top Left */}
-      <div className="fixed top-0 left-0 z-30 pointer-events-none px-6 md:px-12 pt-6 md:pt-12 pb-10">
-        <div className="flex items-center gap-3 md:gap-4">
+      <div className="fixed top-0 left-0 z-30 pointer-events-none px-6 md:px-12 pt-8 md:pt-12 pb-10">
+        <div className="flex items-center gap-4 md:gap-8">
           <img
-            src="/YM-Infra.png"
-            alt="YM Infra"
-            className="object-contain drop-shadow-2xl h-12 md:h-24 w-auto transition-all duration-300"
+            src="/logo-ashwin-sheth-white.svg"
+            alt="Ashwin Sheth Group"
+            className="object-contain drop-shadow-2xl h-10 md:h-16 w-auto transition-all duration-300"
           />
           <span className="text-white/40 text-xl md:text-3xl font-light">&</span>
           <img
-            src="/AshwinShethFinalLogo.svg"
-            alt="Ashwin Sheth Group"
-            className="object-contain drop-shadow-2xl h-12 md:h-24 w-auto transition-all duration-300"
+            src="/logo-ym-infra-white.svg"
+            alt="YM Infra"
+            className="object-contain drop-shadow-2xl h-10 md:h-16 w-auto transition-all duration-300"
           />
         </div>
       </div>
 
       {/* RERA Registration - Top Right */}
-      <div className="fixed top-0 right-0 z-30 pointer-events-none px-6 md:px-12 pt-6 md:pt-12">
-        <div className="bg-slate-900/60 backdrop-blur-xl border border-white/10 rounded-lg md:rounded-xl px-3 py-2 md:px-4 md:py-2.5 shadow-xl">
-          <p className="text-white/50 text-[8px] md:text-[10px] font-medium uppercase tracking-wider mb-0.5">
-            MahaRERA Registration No:
+      <div className="fixed top-0 right-0 z-30 pointer-events-none px-6 md:px-12 pt-6 md:pt-10">
+        <div className="bg-slate-900/80 backdrop-blur-xl rounded-xl md:rounded-2xl px-4 py-3 md:px-6 md:py-4 border border-white/10 shadow-2xl flex flex-col items-end text-white text-right">
+          <p className="text-[9px] md:text-[11px] font-medium tracking-tight opacity-90 mb-0">
+            MahaRERA Registration No.:
           </p>
-          <p className="text-white text-xs md:text-sm font-bold tracking-wide">
+          <p className="text-xl md:text-3xl font-light tracking-tight leading-none mb-1">
             P51900019619
+          </p>
+          <p className="text-[8px] md:text-[10px] font-medium opacity-80">
+            maharera.mahaonline.gov.in
           </p>
         </div>
       </div>
@@ -123,28 +126,27 @@ export function SimplePanoramaShell() {
 
       {/* Control Overlay Interface - Vertical stack on mobile */}
       <div className="fixed bottom-2 md:bottom-8 left-1/2 transform -translate-x-1/2 z-40 flex flex-col items-center gap-2 md:gap-4 w-full px-2 md:px-4 max-w-2xl">
-        
+
         {/* Time and Direction Controls - Stacked on mobile */}
         <div className="flex flex-col md:flex-row flex-wrap justify-center gap-2 md:gap-4 items-center w-full">
-          
+
           {/* Time Switcher */}
           <div className="flex bg-slate-950/40 backdrop-blur-xl rounded-full p-1 md:p-1.5 border border-white/10 shadow-2xl">
             {(["morning", "noon", "evening", "night"] as const).map((timeId) => {
               const isActive = activeTimeId === timeId;
               const isAvailable = activeFloor.times.some((t: TimeConfig) => t.id === timeId);
-              
+
               return (
                 <button
                   key={timeId}
                   onClick={() => isAvailable && handleTimeChange(timeId)}
                   disabled={!isAvailable}
-                  className={`relative p-2 md:p-2.5 rounded-full transition-all group ${
-                    isActive 
-                      ? `bg-gradient-to-br ${timeColors[timeId]} text-white shadow-lg scale-110` 
-                      : isAvailable 
-                        ? 'text-slate-400 hover:text-white hover:bg-white/5' 
-                        : 'text-slate-700 cursor-not-allowed opacity-30'
-                  }`}
+                  className={`relative p-2 md:p-2.5 rounded-full transition-all group ${isActive
+                    ? `bg-gradient-to-br ${timeColors[timeId]} text-white shadow-lg scale-110`
+                    : isAvailable
+                      ? 'text-slate-400 hover:text-white hover:bg-white/5'
+                      : 'text-slate-700 cursor-not-allowed opacity-30'
+                    }`}
                   title={timeId.charAt(0).toUpperCase() + timeId.slice(1)}
                 >
                   <div className="w-4 h-4 md:w-5 md:h-5">
@@ -166,11 +168,10 @@ export function SimplePanoramaShell() {
               <button
                 key={index}
                 onClick={() => setActiveViewIndex(index)}
-                className={`px-2.5 py-1 md:px-4 md:py-1.5 rounded-full text-[9px] md:text-xs font-bold transition-all whitespace-nowrap ${
-                  activeViewIndex === index 
-                    ? `bg-gradient-to-r ${timeColors[activeTimeId]} text-white shadow-lg` 
-                    : 'text-slate-400 hover:text-white hover:bg-white/5'
-                }`}
+                className={`px-2.5 py-1 md:px-4 md:py-1.5 rounded-full text-[9px] md:text-xs font-bold transition-all whitespace-nowrap ${activeViewIndex === index
+                  ? `bg-gradient-to-r ${timeColors[activeTimeId]} text-white shadow-lg`
+                  : 'text-slate-400 hover:text-white hover:bg-white/5'
+                  }`}
               >
                 {view.label}
               </button>
@@ -191,7 +192,7 @@ export function SimplePanoramaShell() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
               </svg>
             </button>
-            
+
             {dropdownOpen && (
               <div className="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 md:left-0 md:translate-x-0 md:mb-4 bg-slate-900/95 backdrop-blur-3xl rounded-xl md:rounded-2xl shadow-[0_30px_60px_rgba(0,0,0,0.8)] border border-white/10 overflow-hidden min-w-[160px] md:min-w-[220px] animate-in fade-in slide-in-from-bottom-4 duration-300">
                 <div className="max-h-[60vh] overflow-y-auto py-1 md:py-2 custom-scrollbar">
@@ -199,9 +200,8 @@ export function SimplePanoramaShell() {
                     <button
                       key={floor.id}
                       onClick={() => handleFloorChange(floor.id)}
-                      className={`w-full px-3 py-2 md:px-6 md:py-4 text-left hover:bg-white/5 transition-all flex items-center justify-between group ${
-                        floor.id === activeFloorId ? 'bg-amber-500/10 text-amber-400 font-bold' : 'text-slate-300'
-                      }`}
+                      className={`w-full px-3 py-2 md:px-6 md:py-4 text-left hover:bg-white/5 transition-all flex items-center justify-between group ${floor.id === activeFloorId ? 'bg-amber-500/10 text-amber-400 font-bold' : 'text-slate-300'
+                        }`}
                     >
                       <span className="text-xs md:text-base">{floor.label}</span>
                       {floor.id === activeFloorId && <div className="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-amber-500 shadow-[0_0_10px_rgba(245,158,11,0.8)]"></div>}
@@ -211,7 +211,7 @@ export function SimplePanoramaShell() {
               </div>
             )}
           </div>
-          
+
           <div className="h-6 md:h-12 w-[1px] bg-white/10"></div>
 
           {/* Elevation Display - Compact on mobile */}
@@ -249,7 +249,7 @@ export function SimplePanoramaShell() {
         }
       `}</style>
 
-      <TransitionOverlay 
+      <TransitionOverlay
         isTransitioning={isTransitioning}
         floorLabel={activeFloor.label}
         onTransitionEnd={() => setIsTransitioning(false)}
