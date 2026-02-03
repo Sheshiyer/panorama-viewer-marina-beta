@@ -5,7 +5,11 @@ import { floors, viewerDefaults, type TimeKey, type ViewDirection } from "@/lib/
 import { PanoramaViewer } from "./PanoramaViewer";
 import { UnifiedControls } from "./UnifiedControls";
 import { ControlPanel } from "./ControlPanel";
-import { MobileMenu } from "./MobileMenu";
+import { FloorPill } from "./FloorPill";
+import { SmartTimeSelector } from "./SmartTimeSelector";
+import { ViewSelector } from "./ViewSelector";
+import { CompassWidget } from "./CompassWidget";
+import { GyroToggle } from "./GyroToggle";
 import { FallbackToast } from "./FallbackToast";
 import { useAvailableDirections } from "@/lib/hooks/useAvailableDirections";
 import { useViewPreload } from "@/lib/hooks/useViewPreload";
@@ -21,6 +25,8 @@ type PannellumViewer = {
   startAutoRotate?: (speed: number) => void;
   stopAutoRotate?: () => void;
   toggleFullscreen?: () => void;
+  startOrientation?: () => void;
+  stopOrientation?: () => void;
 };
 
 export function PanoramaShell() {
@@ -186,54 +192,57 @@ export function PanoramaShell() {
         onFallback={(reason) => setFallbackMessage(reason)}
       />
       {/* Brand Logos - Top Left */}
-      <div className="fixed top-0 left-0 z-30 pointer-events-none px-8 md:px-12 pt-8 md:pt-12">
-        <div className="flex items-center gap-4 md:gap-8">
+      <div className="fixed top-0 left-0 z-30 pointer-events-none px-4 pt-4 md:px-12 md:pt-12">
+        <div className="flex items-center gap-2 md:gap-8">
           <img
             src="/logo-ashwin-sheth-white.svg"
             alt="Ashwin Sheth Group"
-            className="object-contain drop-shadow-2xl h-10 md:h-16 w-auto"
+            className="object-contain drop-shadow-2xl h-8 md:h-16 w-auto"
           />
           <span className="text-white/30 text-xl md:text-3xl font-light">&</span>
           <img
             src="/logo-ym-infra-white.svg"
             alt="YM Infra"
-            className="object-contain drop-shadow-2xl h-10 md:h-16 w-auto"
+            className="object-contain drop-shadow-2xl h-8 md:h-16 w-auto"
           />
         </div>
       </div>
 
       {/* Center Logo - One Marina */}
       <div
-        className="fixed left-0 right-0 pointer-events-none z-30 flex justify-center top-6 md:top-8"
+        className="fixed left-0 right-0 pointer-events-none z-30 flex justify-center top-4 md:top-8"
       >
         <img
           src="/ONE_MARINA_LOGO_PNG.png"
           alt="One Marina"
-          className="object-contain drop-shadow-2xl h-24 md:h-40 w-auto"
+          className="object-contain drop-shadow-2xl h-14 md:h-40 w-auto"
         />
       </div>
 
-      <UnifiedControls
-        activeFloor={activeFloor}
-        setActiveFloor={setActiveFloor}
-        activeTime={activeTime}
-        setActiveTime={setActiveTime}
-        availableTimes={computeAvailableTimes()}
-        activeDirection={activeDirection}
-        setActiveDirection={setActiveDirection}
-        availableDirections={availableDirections}
-      />
+      <div className="hidden md:block">
+        <UnifiedControls
+          activeFloor={activeFloor}
+          setActiveFloor={setActiveFloor}
+          activeTime={activeTime}
+          setActiveTime={setActiveTime}
+          availableTimes={computeAvailableTimes()}
+          activeDirection={activeDirection}
+          setActiveDirection={setActiveDirection}
+          availableDirections={availableDirections}
+        />
+      </div>
 
       {/* RERA Registration - Top Right */}
-      <div className="fixed top-0 right-0 z-30 pointer-events-none px-8 md:px-12 pt-6 md:pt-10">
-        <div className="bg-slate-900/80 backdrop-blur-xl rounded-xl md:rounded-2xl px-4 py-3 md:px-6 md:py-4 border border-white/10 shadow-2xl flex flex-col items-end text-white text-right">
-          <p className="text-[9px] md:text-[11px] font-medium tracking-tight opacity-90 mb-0">
+      <div className="fixed top-0 right-0 z-30 pointer-events-none px-4 pt-4 md:px-12 md:pt-10 flex flex-col items-end gap-4">
+
+        <div className="bg-black/10 backdrop-blur-md rounded-lg md:rounded-2xl px-2 py-1.5 md:px-6 md:py-4 border border-white/5 md:border-white/10 shadow-2xl flex flex-col items-end text-white text-right">
+          <p className="text-[7px] md:text-[11px] font-medium tracking-tight opacity-70 md:opacity-90 mb-0">
             MahaRERA Registration No.:
           </p>
-          <p className="text-xl md:text-3xl font-light tracking-tight leading-none mb-1">
+          <p className="text-xs md:text-3xl font-light tracking-tight leading-none mb-0.5 md:mb-1">
             P51900019619
           </p>
-          <p className="text-[8px] md:text-[10px] font-medium opacity-80">
+          <p className="text-[7px] md:text-[10px] font-medium opacity-60 md:opacity-80">
             maharera.mahaonline.gov.in
           </p>
         </div>
@@ -245,12 +254,42 @@ export function PanoramaShell() {
           onDismiss={() => setFallbackMessage(null)}
         />
       )}
-      <MobileMenu
-        activeFloor={activeFloor}
-        setActiveFloor={setActiveFloor}
-        activeTime={activeTime}
-        setActiveTime={setActiveTime}
-      />
+
+      {/* Compass Widget - Bottom Left */}
+      <div className="fixed bottom-6 left-4 z-40 hidden md:block">
+        <CompassWidget viewer={viewer} />
+      </div>
+
+      {/* Minimalist Mobile Controls Container */}
+      <div className="fixed bottom-6 z-40 md:hidden w-full px-4 pointer-events-none flex flex-col items-center gap-4">
+
+        {/* Row for Time & View Selectors */}
+        <div className="flex items-center gap-2 pointer-events-auto">
+          <SmartTimeSelector
+            activeTime={activeTime}
+            setActiveTime={setActiveTime}
+            availableTimes={computeAvailableTimes()}
+          />
+          <ViewSelector
+            activeDirection={activeDirection}
+            setActiveDirection={setActiveDirection}
+            availableDirections={availableDirections}
+          />
+          {/* Gyro Toggle for Experience */}
+          <div className="md:hidden">
+            <GyroToggle viewer={viewer} />
+          </div>
+        </div>
+
+        {/* Floor Pill at the bottom */}
+        <div className="pointer-events-auto">
+          <FloorPill
+            activeFloor={activeFloor}
+            setActiveFloor={setActiveFloor}
+          />
+        </div>
+
+      </div>
       <ControlPanel
         onReset={onReset}
         onZoomIn={onZoomIn}

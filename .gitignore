@@ -53,6 +53,8 @@ next-env.d.ts
 .context/
 # Large panorama image files (use R2 for production)
 public/assets/panoramas/
+public/assets/panoramas-v2/
+public/assets/tiles/
 
 # Raw panorama source files
 .360-all/
