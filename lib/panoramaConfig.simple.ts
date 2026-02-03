@@ -204,7 +204,7 @@ export const floors: FloorConfig[] = [
     id: 4,
     label: "56th Floor",
     floorNumber: 56,
-    elevation: 196, // Corrected elevation
+    elevation: 196,
     times: [
       {
         id: "morning",
@@ -248,7 +248,7 @@ export const floors: FloorConfig[] = [
     id: 5,
     label: "60th Floor",
     floorNumber: 60,
-    elevation: 210, // Corrected elevation
+    elevation: 210,
     times: [
       {
         id: "morning",
@@ -292,7 +292,7 @@ export const floors: FloorConfig[] = [
     id: 6,
     label: "64th Floor",
     floorNumber: 64,
-    elevation: 224, // Corrected elevation
+    elevation: 224,
     times: [
       {
         id: "morning",
@@ -336,39 +336,7 @@ export const floors: FloorConfig[] = [
     id: 7,
     label: "68th Floor",
     floorNumber: 68,
-    elevation: 238, // Corrected elevation // Was mapped wrong? 196m -> 56f in my table? 
-    // Wait, 196m -> 56f. 238m -> 68f.
-    // The previous file had:
-    // 56th Floor: 210m -> 60f?
-    // Let's rely on my task.md table which the user approved!
-    // 154m -> 44f
-    // 167m -> 48f
-    // 182m -> 52f
-    // 196m -> 56f
-    // 210m -> 60f
-    // 224m -> 64f
-    // 238m -> 68f
-    // 252m -> 72f
-    // 266m -> 75f
-
-    // I need to be ultra careful here.
-    // My previous code block for 56th Floor has 210m.
-    // My table says 210m -> 60f.
-    // So 56th Floor should be 196m!
-    // I need to fix the Elevations in this file to match my correct mapping!
-
-    // Corrected Logic:
-    // Floor 44: 154m
-    // Floor 48: 167m
-    // Floor 52: 182m
-    // Floor 56: 196m
-    // Floor 60: 210m
-    // Floor 64: 224m
-    // Floor 68: 238m
-    // Floor 72: 252m
-    // Floor 75: 266m
-
-    // I will rewrite this file using these elevations.
+    elevation: 238,
 
     times: [
       {
