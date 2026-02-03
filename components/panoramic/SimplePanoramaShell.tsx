@@ -87,25 +87,33 @@ export function SimplePanoramaShell() {
         onReady={() => console.log('Viewer ready')} 
       />
       
-      {/* Global Header Logos */}
-      <div className="fixed top-0 left-0 right-0 z-30 pointer-events-none px-6 md:px-12 pt-6 md:pt-12 pb-10 flex items-center justify-between gap-4">
-        <img
-          src="/YM-Infra.png"
-          alt="YM Infra"
-          className="object-contain drop-shadow-2xl h-16 md:h-32 w-auto transition-all duration-300"
-        />
-        
-        <img
-          src="/ONE_MARINA_LOGO_PNG.png"
-          alt="One Marina"
-          className="object-contain drop-shadow-2xl h-24 md:h-40 w-auto transition-all duration-300"
-        />
-        
-        <img
-          src="/AshwinShethFinalLogo.svg"
-          alt="Ashwin Sheth Group"
-          className="object-contain drop-shadow-2xl h-16 md:h-32 w-auto transition-all duration-300"
-        />
+      {/* Brand Logos - Top Left */}
+      <div className="fixed top-0 left-0 z-30 pointer-events-none px-6 md:px-12 pt-6 md:pt-12 pb-10">
+        <div className="flex items-center gap-3 md:gap-4">
+          <img
+            src="/YM-Infra.png"
+            alt="YM Infra"
+            className="object-contain drop-shadow-2xl h-12 md:h-24 w-auto transition-all duration-300"
+          />
+          <span className="text-white/40 text-xl md:text-3xl font-light">&</span>
+          <img
+            src="/AshwinShethFinalLogo.svg"
+            alt="Ashwin Sheth Group"
+            className="object-contain drop-shadow-2xl h-12 md:h-24 w-auto transition-all duration-300"
+          />
+        </div>
+      </div>
+
+      {/* RERA Registration - Top Right */}
+      <div className="fixed top-0 right-0 z-30 pointer-events-none px-6 md:px-12 pt-6 md:pt-12">
+        <div className="bg-slate-900/60 backdrop-blur-xl border border-white/10 rounded-lg md:rounded-xl px-3 py-2 md:px-4 md:py-2.5 shadow-xl">
+          <p className="text-white/50 text-[8px] md:text-[10px] font-medium uppercase tracking-wider mb-0.5">
+            MahaRERA Registration No:
+          </p>
+          <p className="text-white text-xs md:text-sm font-bold tracking-wide">
+            P51900019619
+          </p>
+        </div>
       </div>
 
       {/* Weather Widget - Bottom Left (hidden on mobile) */}
@@ -212,6 +220,15 @@ export function SimplePanoramaShell() {
             <span className="text-lg md:text-2xl font-black text-white tabular-nums">
               {activeFloor.elevation}<span className="text-slate-500 text-[10px] md:text-sm font-normal ml-0.5">m</span>
             </span>
+          </div>
+
+          <div className="h-6 md:h-12 w-[1px] bg-white/10"></div>
+
+          {/* Actual View Disclaimer */}
+          <div className="bg-slate-900/50 backdrop-blur-md border border-white/10 rounded-full px-3 py-1 md:px-4 md:py-1.5 shadow-lg">
+            <p className="text-white/70 text-[9px] md:text-xs font-medium tracking-wide whitespace-nowrap">
+              Actual View
+            </p>
           </div>
         </div>
       </div>

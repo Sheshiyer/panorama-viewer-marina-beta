@@ -218,6 +218,11 @@ export function SimplePanoramaViewer({ floor, timeId, viewIndex, onReady }: Prop
       */}
       {loading && (
         <div className="absolute inset-0 flex flex-col items-center justify-center text-slate-200 z-50 bg-slate-950/20 backdrop-blur-sm">
+          <img
+            src="/ONE_MARINA_LOGO_PNG.png"
+            alt="One Marina"
+            className="object-contain drop-shadow-2xl h-24 md:h-40 w-auto mb-8 animate-in fade-in duration-500"
+          />
           <div className="w-16 h-16 border-4 border-amber-500/30 border-t-amber-500 rounded-full animate-spin mb-4"></div>
           <p className="text-lg font-medium">Loading {floor.label}...</p>
           <p className="text-sm text-slate-400 mt-2">
