@@ -221,7 +221,7 @@ export function SimplePanoramaViewer({ floor, timeId, viewIndex, onReady }: Prop
           <img
             src="/ONE_MARINA_LOGO_PNG.png"
             alt="One Marina"
-            className="object-contain drop-shadow-2xl h-32 md:h-56 w-auto mb-8 animate-in fade-in duration-500"
+            className="object-contain drop-shadow-2xl h-64 md:h-[28rem] w-auto mb-8 animate-in fade-in duration-500"
           />
           <div className="w-16 h-16 border-4 border-amber-500/30 border-t-amber-500 rounded-full animate-spin mb-4"></div>
           <p className="text-lg font-medium">Loading {floor.label}...</p>
