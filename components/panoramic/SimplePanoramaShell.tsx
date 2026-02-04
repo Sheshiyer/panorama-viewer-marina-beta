@@ -93,13 +93,13 @@ export function SimplePanoramaShell() {
           <img
             src="/logo-ashwin-sheth-white.svg"
             alt="Ashwin Sheth Group"
-            className="object-contain drop-shadow-2xl h-10 md:h-16 w-auto transition-all duration-300"
+            className="object-contain drop-shadow-2xl h-12 md:h-24 w-auto transition-all duration-300"
           />
           <span className="text-white/40 text-xl md:text-3xl font-light">&</span>
           <img
             src="/logo-ym-infra-white.svg"
             alt="YM Infra"
-            className="object-contain drop-shadow-2xl h-10 md:h-16 w-auto transition-all duration-300"
+            className="object-contain drop-shadow-2xl h-12 md:h-24 w-auto transition-all duration-300"
           />
         </div>
       </div>

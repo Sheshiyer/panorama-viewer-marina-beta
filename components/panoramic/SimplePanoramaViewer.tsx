@@ -67,7 +67,7 @@ export function SimplePanoramaViewer({ floor, timeId, viewIndex, onReady }: Prop
 
         // Detect mobile device for better panorama FOV
         const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
-        
+
         // Mobile-optimized FOV to prevent black bars
         const mobileHfov = 120; // Wider FOV for mobile portrait
         const desktopHfov = view.hfov ?? 90;
@@ -97,7 +97,7 @@ export function SimplePanoramaViewer({ floor, timeId, viewIndex, onReady }: Prop
         if (!view.isPanoramic) {
           const haov = isMobile ? 120 : 100;
           const vaov = haov / (floor.floorNumber === 56 ? 1.33 : 1.77);
-          
+
           viewerConfig.haov = haov;
           viewerConfig.vaov = vaov;
           viewerConfig.minYaw = -haov / 2;
@@ -144,19 +144,19 @@ export function SimplePanoramaViewer({ floor, timeId, viewIndex, onReady }: Prop
 
   useEffect(() => {
     if (!viewerRef.current) return;
-    
+
     const interval = setInterval(() => {
       if (viewerRef.current?.getYaw) {
         setCurrentYaw(viewerRef.current.getYaw());
       }
     }, 100);
-    
+
     return () => clearInterval(interval);
   }, [loading]);
 
   const togglePlayPause = () => {
     if (!viewerRef.current) return;
-    
+
     if (isPlaying) {
       viewerRef.current.stopAutoRotate?.();
       setIsPlaying(false);
@@ -207,9 +207,9 @@ export function SimplePanoramaViewer({ floor, timeId, viewIndex, onReady }: Prop
         This is the dedicated Pannellum div. 
         It MUST be empty so React doesn't try to manage its children.
       */}
-      <div 
-        ref={containerRef} 
-        className="w-full h-full" 
+      <div
+        ref={containerRef}
+        className="w-full h-full"
       />
 
       {/* 
@@ -221,7 +221,7 @@ export function SimplePanoramaViewer({ floor, timeId, viewIndex, onReady }: Prop
           <img
             src="/ONE_MARINA_LOGO_PNG.png"
             alt="One Marina"
-            className="object-contain drop-shadow-2xl h-24 md:h-40 w-auto mb-8 animate-in fade-in duration-500"
+            className="object-contain drop-shadow-2xl h-32 md:h-56 w-auto mb-8 animate-in fade-in duration-500"
           />
           <div className="w-16 h-16 border-4 border-amber-500/30 border-t-amber-500 rounded-full animate-spin mb-4"></div>
           <p className="text-lg font-medium">Loading {floor.label}...</p>
@@ -230,7 +230,7 @@ export function SimplePanoramaViewer({ floor, timeId, viewIndex, onReady }: Prop
           </p>
         </div>
       )}
-      
+
       {error && (
         <div className="absolute inset-0 flex items-center justify-center text-center p-6 z-50 bg-slate-950/80">
           <div className="bg-slate-900/90 p-8 rounded-2xl border border-red-500/20 shadow-2xl">
@@ -260,11 +260,11 @@ export function SimplePanoramaViewer({ floor, timeId, viewIndex, onReady }: Prop
               >
                 {isPlaying ? (
                   <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z"/>
+                    <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z" />
                   </svg>
                 ) : (
                   <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M8 5v14l11-7z"/>
+                    <path d="M8 5v14l11-7z" />
                   </svg>
                 )}
               </button>
@@ -340,11 +340,11 @@ export function SimplePanoramaViewer({ floor, timeId, viewIndex, onReady }: Prop
               >
                 {isPlaying ? (
                   <svg className="w-6 h-6 text-white group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z"/>
+                    <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z" />
                   </svg>
                 ) : (
                   <svg className="w-6 h-6 text-white group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M8 5v14l11-7z"/>
+                    <path d="M8 5v14l11-7z" />
                   </svg>
                 )}
               </button>
@@ -407,19 +407,19 @@ export function SimplePanoramaViewer({ floor, timeId, viewIndex, onReady }: Prop
             <span className="absolute bottom-2 text-[10px] font-bold text-white/40">S</span>
             <span className="absolute right-2 text-[10px] font-bold text-white/40">E</span>
             <span className="absolute left-2 text-[10px] font-bold text-white/40">W</span>
-            
+
             {/* Needle */}
-            <div 
+            <div
               className="w-1 h-16 relative transition-transform duration-100 ease-out"
               style={{ transform: `rotate(${-currentYaw}deg)` }}
             >
               <div className="absolute top-0 left-0 w-full h-1/2 bg-red-500 rounded-full shadow-[0_0_12px_rgba(239,68,68,0.9)]" />
               <div className="absolute bottom-0 left-0 w-full h-1/2 bg-white/40 rounded-full" />
             </div>
-            
+
             {/* Center dot */}
             <div className="w-2.5 h-2.5 bg-white rounded-full z-10 shadow-lg border border-slate-950/20" />
-            
+
             {/* Yaw readout on hover */}
             <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-slate-900/90">
               <span className="text-xs font-black text-white tabular-nums tracking-tighter">
