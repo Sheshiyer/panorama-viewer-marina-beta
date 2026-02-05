@@ -551,8 +551,8 @@ export const floors: FloorConfig[] = [
   },
   {
     id: 9,
-    label: "75th Floor",
-    floorNumber: 75,
+    label: "74th Floor",
+    floorNumber: 74,
     elevation: 266,
     views: {
       sunrise: {

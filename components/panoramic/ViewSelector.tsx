@@ -19,9 +19,9 @@ const directionConfig: Record<
     Direction,
     { icon: React.ComponentType<{ className?: string }>; label: string }
 > = {
-    "central-sea": { icon: WavesIcon, label: "Sea" },
-    "marine-line": { icon: Building2, label: "Marine" },
-    stadium: { icon: StadiumIcon, label: "Stadium" },
+    "central-sea": { icon: WavesIcon, label: "Sea View" },
+    "marine-line": { icon: Building2, label: "Bandra-Worli Sea Link View" },
+    stadium: { icon: StadiumIcon, label: "Stadium View" },
 };
 
 export function ViewSelector({ activeDirection, setActiveDirection, availableDirections }: Props) {
@@ -33,7 +33,7 @@ export function ViewSelector({ activeDirection, setActiveDirection, availableDir
                     "h-11 p-1 rounded-full flex items-center gap-1 border border-white/10 shadow-xl backdrop-blur-md bg-black/40"
                 )}
             >
-                {(["central-sea", "marine-line", "stadium"] as Direction[]).map((dir) => {
+                {(["stadium", "central-sea", "marine-line"] as Direction[]).map((dir) => {
                     const { icon: Icon, label } = directionConfig[dir];
                     const isActive = dir === activeDirection;
                     const isAvailable = availableDirections.includes(dir);
