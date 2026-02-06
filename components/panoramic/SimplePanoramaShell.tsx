@@ -89,7 +89,7 @@ export function SimplePanoramaShell() {
 
       {/* Brand Logos - Top Left */}
       <div className="fixed top-0 left-0 z-30 pointer-events-none px-6 md:px-12 pt-8 md:pt-12 pb-10">
-        <div className="flex items-center gap-4 md:gap-8">
+        <div className="flex items-center gap-1 md:gap-1">
           <img
             src="/logo-ashwin-sheth-white.svg"
             alt="Ashwin Sheth Group"
@@ -105,7 +105,7 @@ export function SimplePanoramaShell() {
       </div>
 
       {/* RERA Registration - Top Right */}
-      <div className="fixed top-0 right-0 z-30 pointer-events-none px-6 md:px-12 pt-6 md:pt-10">
+      <div className="fixed top-0 right-0 z-30 pointer-events-none px-6 md:px-12 pt-6 md:pt-10 scale-[0.7] origin-top-right">
         <div className="flex flex-col items-end text-white text-right drop-shadow-lg">
           <p className="text-[9px] md:text-[11px] font-medium tracking-tight opacity-90 mb-0">
             MahaRERA Registration No.:
