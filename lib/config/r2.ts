@@ -1,5 +1,5 @@
 /**
- * Cloudflare R2 configuration for Marina One Panoramas
+ * Cloudflare R2 configuration for One Marina Panoramas
  * 
  * New bucket structure (simplified):
  * - Bucket name: marina-one-panoramas-v2
@@ -14,15 +14,15 @@
 export const R2_CONFIG = {
   // Bucket name on Cloudflare R2
   bucketName: "marina-one-panoramas-v2",
-  
+
   // Public R2 domain (will be set after bucket creation)
   // Format: https://pub-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx.r2.dev
   publicDomain: process.env.NEXT_PUBLIC_R2_DOMAIN || "",
-  
+
   // Whether to use R2 URLs or local files
   // Set to false during development, true in production
   useR2: process.env.NEXT_PUBLIC_USE_R2 === "true",
-  
+
   // Account ID for Cloudflare R2
   accountId: process.env.CLOUDFLARE_ACCOUNT_ID || "",
 };

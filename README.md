@@ -1,6 +1,6 @@
-# Marina One - Advanced 360° Environment Simulator
+# One Marina - Advanced 360° Environment Simulator
 
-An elite-tier, interactive 360° panorama viewer and environmental simulator for Marina One's premium floors (44F to 75F). This experience features a completely redesigned "Glass-Morphic" UI, real-time environmental data, and a high-performance R2 asset delivery system.
+An elite-tier, interactive 360° panorama viewer and environmental simulator for One Marina's premium floors (44F to 75F). This experience features a completely redesigned "Glass-Morphic" UI, real-time environmental data, and a high-performance R2 asset delivery system.
 
 **By Ashwin Sheth Group & YM Infra**
 
@@ -105,4 +105,4 @@ The mobile view has been specifically engineered for "thumb-friendly" usage:
 
 ## 📄 License
 
-© 2026 Marina One by Ashwin Sheth Group & YM Infra. All rights reserved.
+© 2026 One Marina by Ashwin Sheth Group & YM Infra. All rights reserved.

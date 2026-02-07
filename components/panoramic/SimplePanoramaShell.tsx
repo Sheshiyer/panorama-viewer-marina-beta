@@ -88,36 +88,41 @@ export function SimplePanoramaShell() {
         onReady={() => console.log('Viewer ready')}
       />
 
-      {/* Brand Logos - Top Left */}
-      <div className="fixed top-0 left-0 z-30 pointer-events-none px-6 md:px-12 pt-8 md:pt-12 pb-10">
+      {/* Unified Header - Logos & RERA */}
+      <div className="fixed top-0 left-0 right-0 z-30 pointer-events-none px-4 pt-4 md:px-12 md:pt-10 flex items-center justify-between">
+
+        {/* Brand Logos - Left */}
         <div className="flex items-center gap-1 md:gap-1">
           <img
             src="/logo-ashwin-sheth-white.svg"
             alt="Ashwin Sheth Group"
-            className="object-contain drop-shadow-2xl h-12 md:h-24 w-auto transition-all duration-300"
+            className="object-contain drop-shadow-2xl h-6 md:h-11 w-auto transition-all duration-300"
           />
-          <span className="text-white/40 text-xl md:text-3xl font-light">&</span>
+          <span className="text-white/30 text-lg md:text-2xl font-light">&</span>
           <img
             src="/logo-ym-infra-white.svg"
             alt="YM Infra"
-            className="object-contain drop-shadow-2xl h-12 md:h-24 w-auto transition-all duration-300"
+            className="object-contain drop-shadow-2xl h-6 md:h-11 w-auto transition-all duration-300"
           />
         </div>
-      </div>
 
-      {/* RERA Registration - Top Right */}
-      <div className="fixed top-0 right-0 z-30 pointer-events-none px-6 md:px-12 pt-6 md:pt-10 scale-[0.7] origin-top-right">
-        <div className="flex flex-col items-end text-white text-right drop-shadow-lg">
-          <p className="text-[9px] md:text-[11px] font-medium tracking-tight opacity-90 mb-0">
-            MahaRERA Registration No.:
-          </p>
-          <p className="text-xl md:text-3xl font-light tracking-tight leading-none mb-1">
-            P51900019619
-          </p>
-          <p className="text-[8px] md:text-[10px] font-medium opacity-80">
-            maharera.mahaonline.gov.in
-          </p>
+        {/* RERA Registration - Right */}
+        <div className="flex items-center h-6 md:h-11">
+          <div className="flex flex-col items-end gap-0.5 md:gap-1 drop-shadow-lg">
+            <div className="flex flex-col items-end text-white text-right leading-none">
+              <p className="text-[6px] md:text-[9px] font-medium tracking-tight opacity-70 md:opacity-90 mb-0.5">
+                MahaRERA Registration No.:
+              </p>
+              <p className="text-[10px] md:text-xl font-light tracking-tight leading-none mb-0.5">
+                P51900019619
+              </p>
+              <p className="text-[6px] md:text-[8px] font-medium opacity-60 md:opacity-80">
+                maharera.mahaonline.gov.in
+              </p>
+            </div>
+          </div>
         </div>
+
       </div>
 
       <DisclaimerWidget />
