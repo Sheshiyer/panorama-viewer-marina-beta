@@ -55,16 +55,9 @@ function getImageUrl(localPath: string): string {
  * Call this in components/hooks, NOT at module initialization.
  */
 export function resolveImageUrl(localPath: string): string {
-  // Check environment at runtime
-  const useR2 = typeof window !== 'undefined'
-    ? process.env.NEXT_PUBLIC_USE_R2 === 'true'
-    : process.env.NEXT_PUBLIC_USE_R2 === 'true'; // fallback for server-side
-  const r2Domain = process.env.NEXT_PUBLIC_R2_DOMAIN;
-
-  if (useR2 && r2Domain) {
-    return `${r2Domain}${localPath}`;
-  }
-  return localPath;
+  // Always use the local proxy path which maps to R2 via next.config.ts rewrites
+  // This avoids CORS issues by keeping requests same-origin
+  return `/r2-assets${localPath}`;
 }
 
 export const floors: FloorConfig[] = [
