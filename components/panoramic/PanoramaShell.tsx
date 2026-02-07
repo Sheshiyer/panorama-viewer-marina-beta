@@ -11,6 +11,7 @@ import { ViewSelector } from "./ViewSelector";
 import { CompassWidget } from "./CompassWidget";
 import { GyroToggle } from "./GyroToggle";
 import { FallbackToast } from "./FallbackToast";
+import { DisclaimerWidget } from "./DisclaimerWidget";
 import { useAvailableDirections } from "@/lib/hooks/useAvailableDirections";
 import { useViewPreload } from "@/lib/hooks/useViewPreload";
 
@@ -191,6 +192,9 @@ export function PanoramaShell() {
         onReady={handleReady}
         onFallback={(reason) => setFallbackMessage(reason)}
       />
+
+      <DisclaimerWidget />
+
       {/* Brand Logos - Top Left */}
       <div className="fixed top-0 left-0 z-30 pointer-events-none px-4 pt-4 md:px-12 md:pt-12">
         <div className="flex items-center gap-1 md:gap-1">

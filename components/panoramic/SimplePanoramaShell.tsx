@@ -5,6 +5,7 @@ import { floors, type TimeKey, type TimeConfig, type ViewConfig } from "@/lib/pa
 import { SimplePanoramaViewer } from "./SimplePanoramaViewer";
 import { TransitionOverlay } from "./TransitionOverlay";
 import { WeatherWidget } from "./WeatherWidget";
+import { DisclaimerWidget } from "./DisclaimerWidget";
 
 export function SimplePanoramaShell() {
   const [activeFloorId, setActiveFloorId] = useState<number>(floors[0].id);
@@ -118,6 +119,8 @@ export function SimplePanoramaShell() {
           </p>
         </div>
       </div>
+
+      <DisclaimerWidget />
 
       {/* Weather Widget - Bottom Left (hidden on mobile) */}
       <div className="hidden md:block fixed bottom-12 left-12 z-40 pointer-events-auto">
