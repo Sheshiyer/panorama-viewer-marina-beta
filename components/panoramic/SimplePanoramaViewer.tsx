@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { loadPannellum } from "@/lib/pannellumLoader";
 import type { FloorConfig } from "@/lib/panoramaConfig.simple";
 import { resolveImageUrl } from "@/lib/panoramaConfig.simple";
+import { glass } from "@/lib/ui";
 
 type PannellumViewer = {
   destroy?: () => void;
@@ -330,65 +331,67 @@ export function SimplePanoramaViewer({ floor, timeId, viewIndex, onReady }: Prop
           </div>
 
           {/* Desktop: Always Visible Controls */}
-          <div className="hidden md:flex absolute bottom-6 right-6 z-50 flex-col gap-3">
+          <div className="hidden md:flex absolute bottom-6 right-6 z-50 flex-col gap-4">
             {/* Play/Pause Button - Only show for true panoramics */}
             {view?.isPanoramic && (
               <button
                 onClick={togglePlayPause}
-                className="w-14 h-14 rounded-full bg-slate-900/80 backdrop-blur-xl border border-white/10 flex items-center justify-center hover:bg-slate-800/90 transition-all shadow-2xl group"
+                className={`w-12 h-12 rounded-full ${glass} flex items-center justify-center hover:bg-slate-800/90 transition-all duration-500 shadow-2xl group border border-amber-400/20`}
                 aria-label={isPlaying ? "Pause rotation" : "Play rotation"}
               >
                 {isPlaying ? (
-                  <svg className="w-6 h-6 text-white group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-5 h-5 text-white group-hover:text-amber-400 group-hover:scale-110 transition-all duration-300" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z" />
                   </svg>
                 ) : (
-                  <svg className="w-6 h-6 text-white group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-5 h-5 text-white group-hover:text-amber-400 group-hover:scale-110 transition-all duration-300" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M8 5v14l11-7z" />
                   </svg>
                 )}
+                {/* Subtle Glow */}
+                <div className="absolute inset-0 rounded-full bg-amber-400/0 group-hover:bg-amber-400/5 blur-md transition-all duration-500" />
               </button>
             )}
 
             {/* Zoom Controls */}
-            <div className="flex flex-col gap-2 bg-slate-900/80 backdrop-blur-xl border border-white/10 rounded-2xl p-2 shadow-2xl">
+            <div className={`flex flex-col ${glass} rounded-2xl overflow-hidden shadow-2xl border border-amber-400/20`}>
               <button
                 onClick={zoomIn}
-                className="w-10 h-10 rounded-lg bg-slate-800/50 hover:bg-slate-700/70 transition-all flex items-center justify-center group"
+                className="w-12 h-10 hover:bg-white/10 transition-all flex items-center justify-center group border-b border-white/5"
                 aria-label="Zoom in"
               >
-                <svg className="w-5 h-5 text-white group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-5 h-5 text-white group-hover:text-amber-400 group-hover:scale-110 transition-all duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
                 </svg>
               </button>
               <button
                 onClick={zoomOut}
-                className="w-10 h-10 rounded-lg bg-slate-800/50 hover:bg-slate-700/70 transition-all flex items-center justify-center group"
+                className="w-12 h-10 hover:bg-white/10 transition-all flex items-center justify-center group"
                 aria-label="Zoom out"
               >
-                <svg className="w-5 h-5 text-white group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-5 h-5 text-white group-hover:text-amber-400 group-hover:scale-110 transition-all duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 12H4" />
                 </svg>
               </button>
             </div>
 
             {/* Additional Controls */}
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-4">
               <button
                 onClick={resetView}
-                className="w-12 h-12 rounded-full bg-slate-900/80 backdrop-blur-xl border border-white/10 flex items-center justify-center hover:bg-slate-800/90 transition-all shadow-2xl group"
+                className={`w-12 h-12 rounded-full ${glass} flex items-center justify-center hover:bg-slate-800/90 transition-all duration-500 shadow-2xl group border border-amber-400/20`}
                 title="Reset View"
               >
-                <svg className="w-5 h-5 text-white group-hover:rotate-180 transition-transform duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-5 h-5 text-white group-hover:text-amber-400 group-hover:rotate-180 transition-all duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
                 </svg>
               </button>
               <button
                 onClick={toggleFullscreen}
-                className="w-12 h-12 rounded-full bg-slate-900/80 backdrop-blur-xl border border-white/10 flex items-center justify-center hover:bg-slate-800/90 transition-all shadow-2xl group"
+                className={`w-12 h-12 rounded-full ${glass} flex items-center justify-center hover:bg-slate-800/90 transition-all duration-500 shadow-2xl group border border-amber-400/20`}
                 title="Toggle Fullscreen"
               >
-                <svg className="w-5 h-5 text-white group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-5 h-5 text-white group-hover:text-amber-400 group-hover:scale-110 transition-all duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
                 </svg>
               </button>
@@ -397,38 +400,64 @@ export function SimplePanoramaViewer({ floor, timeId, viewIndex, onReady }: Prop
         </>
       )}
 
-      {/* Compass - Bottom Left (hidden on mobile) */}
+      {/* Compass - Bottom Left */}
       {!loading && !error && (
         <div className="hidden md:block absolute bottom-12 left-12 z-40 mb-32">
-          <div className="relative w-24 h-24 bg-slate-900/60 backdrop-blur-xl border border-white/10 rounded-full flex items-center justify-center shadow-2xl overflow-hidden group hover:bg-slate-800/80 transition-all">
-            {/* Cardinal directions */}
-            <div className="absolute inset-3 border border-white/5 rounded-full" />
-            <span className="absolute top-2 text-[10px] font-bold text-white/40">N</span>
-            <span className="absolute bottom-2 text-[10px] font-bold text-white/40">S</span>
-            <span className="absolute right-2 text-[10px] font-bold text-white/40">E</span>
-            <span className="absolute left-2 text-[10px] font-bold text-white/40">W</span>
+          {/* Main Compass Container with Glass & Gold theme */}
+          <div className={`relative w-28 h-28 ${glass} rounded-full flex items-center justify-center p-1 group hover:bg-slate-800/80 transition-all duration-500 shadow-[0_22px_70px_rgba(0,0,0,0.7)]`}>
+            {/* Gold highlight ring */}
+            <div className="absolute inset-0 rounded-full border border-amber-400/20 pointer-events-none" />
 
-            {/* Needle */}
+            {/* Rotating Dial Container */}
             <div
-              className="w-1 h-16 relative transition-transform duration-100 ease-out"
-              style={{ transform: `rotate(${-currentYaw}deg)` }}
+              className="absolute inset-0 transition-transform duration-700 ease-out"
+              style={{ transform: `rotate(${-((view.viewingAngle || 0) - currentYaw)}deg)` }}
             >
-              <div className="absolute top-0 left-0 w-full h-1/2 bg-red-500 rounded-full shadow-[0_0_12px_rgba(239,68,68,0.9)]" />
-              <div className="absolute bottom-0 left-0 w-full h-1/2 bg-white/40 rounded-full" />
+              {/* Dial Background with Tick Marks */}
+              <div className="absolute inset-2 rounded-full border border-white/5 opacity-40">
+                {[...Array(12)].map((_, i) => (
+                  <div
+                    key={i}
+                    className="absolute top-0 left-1/2 -ml-[0.5px] w-[1px] h-2 bg-white/30 origin-[0_46px]"
+                    style={{ transform: `rotate(${i * 30}deg)` }}
+                  />
+                ))}
+              </div>
+
+              {/* Cardinal directions with premium typography */}
+              <span className="absolute top-2 left-1/2 -translate-x-1/2 text-[11px] font-black tracking-widest text-amber-400 drop-shadow-md">N</span>
+              <span className="absolute bottom-2 left-1/2 -translate-x-1/2 text-[11px] font-bold tracking-widest text-white/50">S</span>
+              <span className="absolute right-2 top-1/2 -translate-y-1/2 text-[11px] font-bold tracking-widest text-white/50">E</span>
+              <span className="absolute left-2 top-1/2 -translate-y-1/2 text-[11px] font-bold tracking-widest text-white/50">W</span>
+
+              {/* High-detail Needle (Inside rotating dial) */}
+              <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                <div className="w-1.5 h-16 relative">
+                  {/* North (Red) */}
+                  <div className="absolute top-0 left-0 w-full h-1/2 bg-gradient-to-t from-red-600 to-red-400 rounded-t-full shadow-[0_-2px_10px_rgba(220,38,38,0.5)]" />
+                  {/* South (White/Silver) */}
+                  <div className="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-b from-white/60 to-white/20 rounded-b-full" />
+                </div>
+              </div>
             </div>
 
-            {/* Center dot */}
-            <div className="w-2.5 h-2.5 bg-white rounded-full z-10 shadow-lg border border-slate-950/20" />
+            {/* Fixed Premium Heading Indicator (Top) */}
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 z-30">
+              <div className="w-1 h-4 bg-amber-400 shadow-[0_0_15px_rgba(251,191,36,0.9)] rounded-b-full" />
+              <div className="absolute -top-1 left-1/2 -translate-x-1/2 w-3 h-3 bg-amber-400/20 blur-sm rounded-full" />
+            </div>
 
-            {/* Yaw readout on hover */}
-            <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-slate-900/90">
-              <span className="text-xs font-black text-white tabular-nums tracking-tighter">
-                {Math.round((currentYaw + 360) % 360)}°
+            {/* Center Cap with concentric rings */}
+            <div className="w-4 h-4 bg-slate-950 rounded-full z-30 flex items-center justify-center border border-white/10 shadow-xl">
+              <div className="w-1.5 h-1.5 bg-amber-400 rounded-full" />
+            </div>
+
+            {/* View Label / Degree Readout Overlay */}
+            <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 whitespace-nowrap bg-black/60 backdrop-blur-md border border-white/10 px-3 py-1 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 shadow-2xl">
+              <span className="text-[10px] uppercase font-black tracking-[0.2em] text-amber-400 tabular-nums">
+                {Math.round((currentYaw + (view.viewingAngle || 0) + 720) % 360)}° {view.label.split(' ')[0]}
               </span>
             </div>
-          </div>
-          <div className="mt-4 text-center">
-            <span className="text-white/30 text-[9px] font-bold uppercase tracking-[0.3em] ml-1">Viewer Orientation</span>
           </div>
         </div>
       )}
