@@ -2,11 +2,19 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   async rewrites() {
-    const r2Base = process.env.NEXT_PUBLIC_R2_DOMAIN || "https://pub-507b01312b8f4e44a3a148147daef174.r2.dev";
+    const isDevelopment = process.env.NODE_ENV !== "production";
+    const useR2 = process.env.NEXT_PUBLIC_USE_R2 === "true";
+    const r2Domain = process.env.NEXT_PUBLIC_R2_DOMAIN?.replace(/\/$/, "");
+
+    // Never hardcode a specific R2 domain fallback.
+    // If R2 is disabled or domain is not set, serve from local public assets.
+    // In local development, always serve local files to avoid R2 path/schema mismatches.
+    const assetBase = isDevelopment ? "/assets/panoramas-v2" : (useR2 && r2Domain ? r2Domain : "/assets/panoramas-v2");
+
     return [
       {
         source: "/r2-assets/:path*",
-        destination: `${r2Base}/:path*`,
+        destination: `${assetBase}/:path*`,
       },
     ];
   },
