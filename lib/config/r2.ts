@@ -15,9 +15,9 @@ export const R2_CONFIG = {
   // Bucket name on Cloudflare R2
   bucketName: "marina-one-panoramas-v2",
 
-  // Public R2 domain (will be set after bucket creation)
-  // Format: https://pub-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx.r2.dev
-  publicDomain: process.env.NEXT_PUBLIC_R2_DOMAIN || "",
+  // Public R2 domain (custom domain via Ashwin Sheth)
+  // Production: https://onemarina.shethdevelopers.com
+  publicDomain: process.env.NEXT_PUBLIC_R2_DOMAIN || "https://onemarina.shethdevelopers.com",
 
   // Whether to use R2 URLs or local files
   // Set to false during development, true in production
@@ -47,9 +47,11 @@ export function getImageUrl(filename: string): string {
 export const CORS_CONFIG = {
   AllowedOrigins: [
     "http://localhost:3000",
+    "http://localhost:3001",
     "http://localhost:3002",
     "https://panorama-viewer-marina-beta.vercel.app",
     "https://*.vercel.app",
+    "https://onemarina.shethdevelopers.com",
   ],
   AllowedMethods: ["GET", "HEAD"],
   AllowedHeaders: ["*"],

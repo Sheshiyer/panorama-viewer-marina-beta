@@ -5,8 +5,10 @@
         "origins": [
           "http://localhost:3000",
           "http://localhost:3002",
+          "http://localhost:3001",
           "https://panorama-viewer-marina-beta.vercel.app",
-          "https://*.vercel.app"
+          "https://*.vercel.app",
+          "https://onemarina.shethdevelopers.com"
         ],
         "methods": ["GET", "HEAD"],
         "headers": ["*"]
