@@ -56,8 +56,17 @@ function getImageUrl(localPath: string): string {
  * Call this in components/hooks, NOT at module initialization.
  */
 export function resolveImageUrl(localPath: string): string {
-  // Always use the local proxy path which maps to R2 via next.config.ts rewrites
-  // This avoids CORS issues by keeping requests same-origin
+  if (typeof window === "undefined") return localPath;
+
+  // In production with R2, use the absolute custom domain to avoid proxy path conflicts.
+  // The /r2-assets proxy rewrite only works when the app and assets are on different origins.
+  if (process.env.NEXT_PUBLIC_USE_R2 === "true") {
+    const domain = process.env.NEXT_PUBLIC_R2_DOMAIN?.replace(/\/$/, "") ||
+      "https://onemarina.shethdevelopers.com";
+    return `${domain}${localPath}`;
+  }
+
+  // Local dev or without R2: use the proxy path (rewritten by next.config.ts)
   return `/r2-assets${localPath}`;
 }
 
