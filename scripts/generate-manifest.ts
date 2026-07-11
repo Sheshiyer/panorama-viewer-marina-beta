@@ -3,8 +3,7 @@ import * as path from "path";
 import * as fs from "fs/promises";
 
 // R2 Bucket URL
-// R2 Bucket URL
-const R2_BASE_URL = "https://onemarina.shethdevelopers.com";
+const R2_BASE_URL = "https://pub-3e58c47f7dae4f53bdd00c48e03e6f4c.r2.dev";
 
 async function generateManifest() {
     const sourceDir = path.resolve("public/assets/panoramas-v2");

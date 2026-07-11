@@ -8,8 +8,9 @@ const nextConfig: NextConfig = {
     const deprecatedR2Domains = new Set([
       "https://pub-507b01312b8f4e44a3a148147daef174.r2.dev",
       "https://pub-a60895ec562144db98a4a8904819bb76.r2.dev",
+      "https://onemarina.shethdevelopers.com",
     ]);
-    const defaultR2Domain = "https://onemarina.shethdevelopers.com";
+    const defaultR2Domain = "https://pub-3e58c47f7dae4f53bdd00c48e03e6f4c.r2.dev";
 
     // Protect production from stale env values that still point to deleted R2 domains.
     const safeR2Domain = r2Domain && !deprecatedR2Domains.has(r2Domain) ? r2Domain : defaultR2Domain;

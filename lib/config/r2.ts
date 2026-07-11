@@ -15,9 +15,8 @@ export const R2_CONFIG = {
   // Bucket name on Cloudflare R2
   bucketName: "marina-one-panoramas-v2",
 
-  // Public R2 domain (custom domain via Ashwin Sheth)
-  // Production: https://onemarina.shethdevelopers.com
-  publicDomain: process.env.NEXT_PUBLIC_R2_DOMAIN || "https://onemarina.shethdevelopers.com",
+  // Public R2 domain. onemarina.shethdevelopers.com currently points at Vercel.
+  publicDomain: process.env.NEXT_PUBLIC_R2_DOMAIN || "https://pub-3e58c47f7dae4f53bdd00c48e03e6f4c.r2.dev",
 
   // Whether to use R2 URLs or local files
   // Set to false during development, true in production
