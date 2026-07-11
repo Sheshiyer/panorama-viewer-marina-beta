@@ -6,11 +6,9 @@ const nextConfig: NextConfig = {
     const useR2 = process.env.NEXT_PUBLIC_USE_R2 === "true";
     const r2Domain = process.env.NEXT_PUBLIC_R2_DOMAIN?.replace(/\/$/, "");
     const deprecatedR2Domains = new Set([
-      "https://pub-507b01312b8f4e44a3a148147daef174.r2.dev",
-      "https://pub-a60895ec562144db98a4a8904819bb76.r2.dev",
       "https://onemarina.shethdevelopers.com",
     ]);
-    const defaultR2Domain = "https://pub-3e58c47f7dae4f53bdd00c48e03e6f4c.r2.dev";
+    const defaultR2Domain = "https://360viewmarina.shethdevelopers.com";
 
     // Protect production from stale env values that still point to deleted R2 domains.
     const safeR2Domain = r2Domain && !deprecatedR2Domains.has(r2Domain) ? r2Domain : defaultR2Domain;

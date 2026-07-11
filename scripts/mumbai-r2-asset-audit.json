@@ -1,0 +1,16 @@
+{
+  "project": "Mumbai One Marina panorama viewer",
+  "bucket": "marina-one-assets-360all",
+  "cloudflareAccount": "AshwinSheth",
+  "assetDomain": "https://360viewmarina.shethdevelopers.com",
+  "expectedCount": 80,
+  "presentCount": 80,
+  "missingCount": 0,
+  "missing": [],
+  "extrasCount": 0,
+  "extras": [],
+  "notes": [
+    "onemarina.shethdevelopers.com currently points to the Vercel app and is intentionally blocked as an asset domain.",
+    "No r2.dev or personal Cloudflare account fallback is used by the app config."
+  ]
+}

@@ -11,7 +11,7 @@ export type EnvironmentConfig = {
 
   // Asset URLs - New R2 bucket
   useR2: boolean; // Whether to use R2 URLs or local files
-  r2Domain: string | null; // Public R2 domain (e.g., https://pub-xxxxx.r2.dev)
+  r2Domain: string | null; // Public R2 domain (e.g., https://360viewmarina.shethdevelopers.com)
 
   // Analytics configuration
   analyticsEnabled: boolean;

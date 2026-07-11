@@ -37,7 +37,7 @@ export type FloorConfig = {
   times: TimeConfig[];
 };
 
-const DEFAULT_R2_DOMAIN = "https://pub-3e58c47f7dae4f53bdd00c48e03e6f4c.r2.dev";
+const DEFAULT_R2_DOMAIN = "https://360viewmarina.shethdevelopers.com";
 const BLOCKED_ASSET_DOMAINS = new Set([
   "https://onemarina.shethdevelopers.com",
 ]);

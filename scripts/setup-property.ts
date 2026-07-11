@@ -65,7 +65,7 @@ async function setupProperty() {
 
   // R2 Base URL
   const r2BaseUrl = await question(
-    "Cloudflare R2 base URL (e.g., 'https://pub-xxx.r2.dev/panoramas'): "
+    "Cloudflare R2 base URL (e.g., 'https://360viewmarina.shethdevelopers.com'): "
   );
   if (!r2BaseUrl.startsWith("https://")) {
     console.error("Error: R2 URL must start with https://");

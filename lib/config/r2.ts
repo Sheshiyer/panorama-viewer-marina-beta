@@ -16,7 +16,7 @@ export const R2_CONFIG = {
   bucketName: "marina-one-panoramas-v2",
 
   // Public R2 domain. onemarina.shethdevelopers.com currently points at Vercel.
-  publicDomain: process.env.NEXT_PUBLIC_R2_DOMAIN || "https://pub-3e58c47f7dae4f53bdd00c48e03e6f4c.r2.dev",
+  publicDomain: process.env.NEXT_PUBLIC_R2_DOMAIN || "https://360viewmarina.shethdevelopers.com",
 
   // Whether to use R2 URLs or local files
   // Set to false during development, true in production
