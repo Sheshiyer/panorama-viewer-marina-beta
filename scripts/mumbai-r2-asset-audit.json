@@ -11,6 +11,6 @@
   "extras": [],
   "notes": [
     "onemarina.shethdevelopers.com currently points to the Vercel app and is intentionally blocked as an asset domain.",
-    "No r2.dev or personal Cloudflare account fallback is used by the app config."
+    "No public development URL or personal Cloudflare account fallback is used by the app config."
   ]
 }
