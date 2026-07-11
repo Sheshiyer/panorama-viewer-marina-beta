@@ -1,5 +1,5 @@
-// Simple panoramaConfig.ts - One panoramic image per available floor/view/time
-// Generated from the migrated R2 asset manifest.
+// Simple panoramaConfig.ts - Full 108-slot UI matrix for One Marina panoramas
+// All assets served from AshwinSheth R2 custom domain.
 
 export type TimeKey = "morning" | "noon" | "evening" | "night";
 
@@ -76,6 +76,7 @@ export const floors: FloorConfig[] = [
         id: "noon",
         label: "Noon",
         views: [
+          { label: "Stadium View", viewingAngle: 135, image: getImageUrl("/154-stadium-facing-day-view.jpg"), isPanoramic: true },
           { label: "Sea View", viewingAngle: 270, image: getImageUrl("/154-central-sea-facing-day-view.jpg"), isPanoramic: true },
           { label: "Bandra-Worli Sea Link View", viewingAngle: 315, image: getImageUrl("/154-marine-line-facing-day-view.jpg"), isPanoramic: true },
         ]
@@ -93,6 +94,8 @@ export const floors: FloorConfig[] = [
         id: "night",
         label: "Night",
         views: [
+          { label: "Stadium View", viewingAngle: 135, image: getImageUrl("/154-stadium-facing-night-view.jpg"), isPanoramic: true },
+          { label: "Sea View", viewingAngle: 270, image: getImageUrl("/154-central-sea-facing-night-view.jpg"), isPanoramic: true },
           { label: "Bandra-Worli Sea Link View", viewingAngle: 315, image: getImageUrl("/154-marine-line-facing-night-view.jpg"), isPanoramic: true },
         ]
       },
@@ -108,21 +111,27 @@ export const floors: FloorConfig[] = [
         id: "morning",
         label: "Morning",
         views: [
+          { label: "Stadium View", viewingAngle: 135, image: getImageUrl("/167-stadium-facing-morning-view.jpg"), isPanoramic: true },
           { label: "Sea View", viewingAngle: 270, image: getImageUrl("/167-central-sea-facing-morning-view.jpg"), isPanoramic: true },
+          { label: "Bandra-Worli Sea Link View", viewingAngle: 315, image: getImageUrl("/167-marine-line-facing-morning-view.jpg"), isPanoramic: true },
         ]
       },
       {
         id: "noon",
         label: "Noon",
         views: [
+          { label: "Stadium View", viewingAngle: 135, image: getImageUrl("/167-stadium-facing-day-view.jpg"), isPanoramic: true },
           { label: "Sea View", viewingAngle: 270, image: getImageUrl("/167-central-sea-facing-day-view.jpg"), isPanoramic: true },
+          { label: "Bandra-Worli Sea Link View", viewingAngle: 315, image: getImageUrl("/167-marine-line-facing-day-view.jpg"), isPanoramic: true },
         ]
       },
       {
         id: "evening",
         label: "Evening",
         views: [
+          { label: "Stadium View", viewingAngle: 135, image: getImageUrl("/167-stadium-facing-evening-view.jpg"), isPanoramic: true },
           { label: "Sea View", viewingAngle: 270, image: getImageUrl("/167-central-sea-facing-evening-view.jpg"), isPanoramic: true },
+          { label: "Bandra-Worli Sea Link View", viewingAngle: 315, image: getImageUrl("/167-marine-line-facing-evening-view.jpg"), isPanoramic: true },
         ]
       },
       {
@@ -130,6 +139,8 @@ export const floors: FloorConfig[] = [
         label: "Night",
         views: [
           { label: "Stadium View", viewingAngle: 135, image: getImageUrl("/167-stadium-facing-night-view.jpg"), isPanoramic: true },
+          { label: "Sea View", viewingAngle: 270, image: getImageUrl("/167-central-sea-facing-night-view.jpg"), isPanoramic: true },
+          { label: "Bandra-Worli Sea Link View", viewingAngle: 315, image: getImageUrl("/167-marine-line-facing-night-view.jpg"), isPanoramic: true },
         ]
       },
     ]
@@ -163,6 +174,7 @@ export const floors: FloorConfig[] = [
         label: "Evening",
         views: [
           { label: "Stadium View", viewingAngle: 135, image: getImageUrl("/182-stadium-facing-evening-view.jpg"), isPanoramic: true },
+          { label: "Sea View", viewingAngle: 270, image: getImageUrl("/182-central-sea-facing-evening-view.jpg"), isPanoramic: true },
           { label: "Bandra-Worli Sea Link View", viewingAngle: 315, image: getImageUrl("/182-marine-line-facing-evening-view.jpg"), isPanoramic: true },
         ]
       },
@@ -216,6 +228,7 @@ export const floors: FloorConfig[] = [
         views: [
           { label: "Stadium View", viewingAngle: 135, image: getImageUrl("/196-stadium-facing-night-view.jpg"), isPanoramic: true },
           { label: "Sea View", viewingAngle: 270, image: getImageUrl("/196-sea-facing-night-view.jpg"), isPanoramic: true },
+          { label: "Bandra-Worli Sea Link View", viewingAngle: 315, image: getImageUrl("/196-marine-line-facing-night-view.jpg"), isPanoramic: true },
         ]
       },
     ]
@@ -239,6 +252,7 @@ export const floors: FloorConfig[] = [
         id: "noon",
         label: "Noon",
         views: [
+          { label: "Stadium View", viewingAngle: 135, image: getImageUrl("/210-stadium-facing-day-view.jpg"), isPanoramic: true },
           { label: "Sea View", viewingAngle: 270, image: getImageUrl("/210-central-sea-facing-day-view.jpg"), isPanoramic: true },
           { label: "Bandra-Worli Sea Link View", viewingAngle: 315, image: getImageUrl("/210-marine-line-facing-day-view.jpg"), isPanoramic: true },
         ]
@@ -257,6 +271,7 @@ export const floors: FloorConfig[] = [
         label: "Night",
         views: [
           { label: "Stadium View", viewingAngle: 135, image: getImageUrl("/210-stadium-facing-night-view.jpg"), isPanoramic: true },
+          { label: "Sea View", viewingAngle: 270, image: getImageUrl("/210-central-sea-facing-night-view.jpg"), isPanoramic: true },
           { label: "Bandra-Worli Sea Link View", viewingAngle: 315, image: getImageUrl("/210-marine-line-facing-night-view.jpg"), isPanoramic: true },
         ]
       },
@@ -273,6 +288,7 @@ export const floors: FloorConfig[] = [
         label: "Morning",
         views: [
           { label: "Stadium View", viewingAngle: 135, image: getImageUrl("/224-stadium-facing-morning-view.jpg"), isPanoramic: true },
+          { label: "Sea View", viewingAngle: 270, image: getImageUrl("/224-central-sea-facing-morning-view.jpg"), isPanoramic: true },
           { label: "Bandra-Worli Sea Link View", viewingAngle: 315, image: getImageUrl("/224-marine-line-facing-morning-view.jpg"), isPanoramic: true },
         ]
       },
@@ -290,6 +306,7 @@ export const floors: FloorConfig[] = [
         label: "Evening",
         views: [
           { label: "Stadium View", viewingAngle: 135, image: getImageUrl("/224-stadium-facing-evening-view.jpg"), isPanoramic: true },
+          { label: "Sea View", viewingAngle: 270, image: getImageUrl("/224-central-sea-facing-evening-view.jpg"), isPanoramic: true },
           { label: "Bandra-Worli Sea Link View", viewingAngle: 315, image: getImageUrl("/224-marine-line-facing-evening-view.jpg"), isPanoramic: true },
         ]
       },
@@ -298,6 +315,8 @@ export const floors: FloorConfig[] = [
         label: "Night",
         views: [
           { label: "Stadium View", viewingAngle: 135, image: getImageUrl("/224-stadium-facing-night-view.jpg"), isPanoramic: true },
+          { label: "Sea View", viewingAngle: 270, image: getImageUrl("/224-central-sea-facing-night-view.jpg"), isPanoramic: true },
+          { label: "Bandra-Worli Sea Link View", viewingAngle: 315, image: getImageUrl("/224-marine-line-facing-night-view.jpg"), isPanoramic: true },
         ]
       },
     ]
@@ -321,7 +340,9 @@ export const floors: FloorConfig[] = [
         id: "noon",
         label: "Noon",
         views: [
+          { label: "Stadium View", viewingAngle: 135, image: getImageUrl("/238-stadium-facing-day-view.jpg"), isPanoramic: true },
           { label: "Sea View", viewingAngle: 270, image: getImageUrl("/238-central-sea-facing-day-view.jpg"), isPanoramic: true },
+          { label: "Bandra-Worli Sea Link View", viewingAngle: 315, image: getImageUrl("/238-marine-line-facing-day-view.jpg"), isPanoramic: true },
         ]
       },
       {
@@ -337,6 +358,7 @@ export const floors: FloorConfig[] = [
         id: "night",
         label: "Night",
         views: [
+          { label: "Stadium View", viewingAngle: 135, image: getImageUrl("/238-stadium-facing-night-view.jpg"), isPanoramic: true },
           { label: "Sea View", viewingAngle: 270, image: getImageUrl("/238-sea-facing-night-view.jpg"), isPanoramic: true },
           { label: "Bandra-Worli Sea Link View", viewingAngle: 315, image: getImageUrl("/238-marine-line-facing-night-view.jpg"), isPanoramic: true },
         ]
@@ -354,6 +376,7 @@ export const floors: FloorConfig[] = [
         label: "Morning",
         views: [
           { label: "Stadium View", viewingAngle: 135, image: getImageUrl("/252-stadium-facing-morning-view.jpg"), isPanoramic: true },
+          { label: "Sea View", viewingAngle: 270, image: getImageUrl("/252-central-sea-facing-morning-view.jpg"), isPanoramic: true },
           { label: "Bandra-Worli Sea Link View", viewingAngle: 315, image: getImageUrl("/252-marine-line-facing-morning-view.jpg"), isPanoramic: true },
         ]
       },
@@ -362,6 +385,7 @@ export const floors: FloorConfig[] = [
         label: "Noon",
         views: [
           { label: "Stadium View", viewingAngle: 135, image: getImageUrl("/252-stadium-facing-day-view.jpg"), isPanoramic: true },
+          { label: "Sea View", viewingAngle: 270, image: getImageUrl("/252-central-sea-facing-day-view.jpg"), isPanoramic: true },
           { label: "Bandra-Worli Sea Link View", viewingAngle: 315, image: getImageUrl("/252-marine-line-facing-day-view.jpg"), isPanoramic: true },
         ]
       },
@@ -379,6 +403,7 @@ export const floors: FloorConfig[] = [
         label: "Night",
         views: [
           { label: "Stadium View", viewingAngle: 135, image: getImageUrl("/252-stadium-facing-night-view.jpg"), isPanoramic: true },
+          { label: "Sea View", viewingAngle: 270, image: getImageUrl("/252-central-sea-facing-night-view.jpg"), isPanoramic: true },
           { label: "Bandra-Worli Sea Link View", viewingAngle: 315, image: getImageUrl("/252-marine-line-facing-night-view.jpg"), isPanoramic: true },
         ]
       },
@@ -395,6 +420,7 @@ export const floors: FloorConfig[] = [
         label: "Morning",
         views: [
           { label: "Stadium View", viewingAngle: 135, image: getImageUrl("/266-stadium-facing-morning-view.jpg"), isPanoramic: true },
+          { label: "Sea View", viewingAngle: 270, image: getImageUrl("/266-central-sea-facing-morning-view.jpg"), isPanoramic: true },
           { label: "Bandra-Worli Sea Link View", viewingAngle: 315, image: getImageUrl("/266-marine-line-facing-morning-view.jpg"), isPanoramic: true },
         ]
       },
@@ -402,6 +428,7 @@ export const floors: FloorConfig[] = [
         id: "noon",
         label: "Noon",
         views: [
+          { label: "Stadium View", viewingAngle: 135, image: getImageUrl("/266-stadium-facing-day-view.jpg"), isPanoramic: true },
           { label: "Sea View", viewingAngle: 270, image: getImageUrl("/266-sea-facing-day-view.jpg"), isPanoramic: true },
           { label: "Bandra-Worli Sea Link View", viewingAngle: 315, image: getImageUrl("/266-marine-line-facing-day-view.jpg"), isPanoramic: true },
         ]
@@ -410,6 +437,7 @@ export const floors: FloorConfig[] = [
         id: "evening",
         label: "Evening",
         views: [
+          { label: "Stadium View", viewingAngle: 135, image: getImageUrl("/266-stadium-facing-evening-view.jpg"), isPanoramic: true },
           { label: "Sea View", viewingAngle: 270, image: getImageUrl("/266-central-sea-facing-evening-view.jpg"), isPanoramic: true },
           { label: "Bandra-Worli Sea Link View", viewingAngle: 315, image: getImageUrl("/266-marine-line-facing-evening-view.jpg"), isPanoramic: true },
         ]

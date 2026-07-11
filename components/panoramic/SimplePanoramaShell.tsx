@@ -176,6 +176,7 @@ export function SimplePanoramaShell() {
               <button
                 key={index}
                 onClick={() => setActiveViewIndex(index)}
+                title={view.label}
                 className={`px-2.5 py-1 md:px-4 md:py-1.5 rounded-full text-[9px] md:text-xs font-bold transition-all whitespace-nowrap ${activeViewIndex === index
                   ? `bg-gradient-to-r ${timeColors[activeTimeId]} text-white shadow-lg`
                   : 'text-slate-400 hover:text-white hover:bg-white/5'
